@@ -1,6 +1,6 @@
 export default function VisiMisi() {
   return (
-    <section id="profil" className="py-xl px-gutter max-w-container-max mx-auto scroll-mt-20">
+    <section id="profil" className="pt-8 md:pt-12 pb-xl px-gutter max-w-container-max mx-auto scroll-mt-16">
       <div className="bg-primary text-on-primary rounded-[2rem] p-lg md:p-xl flex flex-col md:flex-row items-center gap-lg relative overflow-hidden">
         {/* Abstract Graphic */}
         <div className="absolute -right-20 -bottom-20 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>

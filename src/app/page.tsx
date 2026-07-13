@@ -22,7 +22,7 @@ export default function Home() {
         {/* News & Anak Sholih Combo Section */}
         <section
           id="berita"
-          className="py-xl bg-surface-container-low border-b border-surface-variant/30 scroll-mt-20"
+          className="pt-8 md:pt-12 pb-xl bg-surface-container-low border-b border-surface-variant/30 scroll-mt-16"
         >
           <div className="max-w-container-max mx-auto px-gutter flex flex-col lg:flex-row gap-lg">
             <Berita />
