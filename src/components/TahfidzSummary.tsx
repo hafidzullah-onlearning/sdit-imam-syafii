@@ -79,35 +79,35 @@ export default function TahfidzSummary() {
   return (
     <section
       id="progrestahfidz"
-      className="md:min-h-[calc(100vh-4rem)] flex flex-col justify-center py-8 md:py-12 bg-surface border-y border-surface-variant/30 scroll-mt-16"
+      className="md:min-h-[calc(100vh-4rem)] lg:h-[calc(100vh-4rem)] flex flex-col justify-center py-8 lg:py-6 bg-surface border-y border-surface-variant/30 scroll-mt-16 lg:overflow-hidden"
     >
-      <div className="max-w-container-max mx-auto px-gutter">
-        <div className="text-center max-w-2xl mx-auto mb-lg">
-          <span className="bg-primary-fixed text-on-primary-fixed px-4 py-1.5 rounded-full font-label-bold text-label-bold inline-flex items-center gap-1.5 mb-3">
+      <div className="max-w-container-max mx-auto px-gutter w-full">
+        <div className="text-center max-w-2xl mx-auto mb-lg lg:mb-4">
+          <span className="bg-primary-fixed text-on-primary-fixed px-4 py-1.5 rounded-full font-label-bold text-label-bold inline-flex items-center gap-1.5 mb-3 lg:mb-2">
             <span className="material-symbols-outlined text-[16px]">verified</span>
             Monitoring Tahfidz Berkala
           </span>
-          <h2 className="font-headline-lg text-headline-lg text-on-surface mb-sm">
+          <h2 className="font-headline-lg text-headline-lg text-on-surface mb-sm lg:mb-1">
             Progres Tahfidz Al-Qur&apos;an
           </h2>
-          <p className="font-body-md text-body-md text-on-surface-variant">
+          <p className="font-body-md text-body-md text-on-surface-variant lg:text-sm">
             Laporan visual pencapaian hafalan siswa secara kolektif serta akses pengecekan mandiri untuk wali santri.
           </p>
         </div>
 
         <div className="flex flex-col lg:flex-row gap-lg items-stretch">
           {/* Left Column: Progress Kolektif */}
-          <div className="lg:w-1/2 bg-surface-container-low rounded-[2rem] p-md md:p-lg border border-surface-variant/30 flex flex-col justify-between oceanic-shadow">
+          <div className="lg:w-1/2 bg-surface-container-low rounded-[2rem] p-md md:p-lg lg:p-6 border border-surface-variant/30 flex flex-col justify-between oceanic-shadow">
             <div>
               <h3 className="text-xl font-bold text-on-surface mb-2 flex items-center gap-2">
                 <span className="material-symbols-outlined text-primary">analytics</span>
                 Rata-rata Pencapaian Kelas
               </h3>
-              <p className="text-sm text-on-surface-variant mb-6">
+              <p className="text-sm text-on-surface-variant mb-6 lg:mb-4">
                 Grafik penyelesaian target kurikulum tahfidz berdasarkan tingkatan kelas pada semester berjalan.
               </p>
 
-              <div className="space-y-6">
+              <div className="space-y-6 lg:space-y-4">
                 {/* Progress 1 */}
                 <div>
                   <div className="flex justify-between items-center mb-2">
@@ -158,7 +158,7 @@ export default function TahfidzSummary() {
               </div>
             </div>
 
-            <div className="mt-8 bg-surface p-4 rounded-xl border border-surface-variant/30 flex items-center gap-3">
+            <div className="mt-8 lg:mt-5 bg-surface p-4 lg:p-3 rounded-xl border border-surface-variant/30 flex items-center gap-3">
               <span className="material-symbols-outlined text-primary text-[28px]">info</span>
               <p className="text-xs text-on-surface-variant leading-relaxed">
                 *Evaluasi kelayakan setoran dilakukan setiap hari oleh Ustadz/Ustadzah pendamping halaqah secara tatap muka (talaqqi).
@@ -167,17 +167,17 @@ export default function TahfidzSummary() {
           </div>
 
           {/* Right Column: Search Box */}
-          <div className="lg:w-1/2 bg-surface-container-low rounded-[2rem] p-md md:p-lg border border-surface-variant/30 flex flex-col justify-between oceanic-shadow">
+          <div className="lg:w-1/2 bg-surface-container-low rounded-[2rem] p-md md:p-lg lg:p-6 border border-surface-variant/30 flex flex-col justify-between oceanic-shadow">
             <div>
               <h3 className="text-xl font-bold text-on-surface mb-2 flex items-center gap-2">
                 <span className="material-symbols-outlined text-primary">search</span>
                 Cek Progres Hafalan Mandiri
               </h3>
-              <p className="text-sm text-on-surface-variant mb-6">
+              <p className="text-sm text-on-surface-variant mb-6 lg:mb-4">
                 Masukkan nama lengkap ananda untuk memantau progres hafalan dan catatan setoran terbaru.
               </p>
 
-              <form onSubmit={handleSearch} className="flex gap-2 mb-6">
+              <form onSubmit={handleSearch} className="flex gap-2 mb-6 lg:mb-4">
                 <div className="relative flex-grow">
                   <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant opacity-70">
                     person
@@ -187,12 +187,12 @@ export default function TahfidzSummary() {
                     placeholder="Contoh: Ahmad Yusuf, Fatimah..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full bg-surface border border-outline-variant/50 rounded-xl py-3.5 pl-11 pr-4 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-on-surface"
+                    className="w-full bg-surface border border-outline-variant/50 rounded-xl py-3.5 lg:py-2.5 pl-11 pr-4 text-sm focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all text-on-surface"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="bg-primary hover:bg-primary-container text-on-primary font-label-bold text-label-bold px-6 py-3.5 rounded-xl cursor-pointer transition-all hover:scale-[0.98]"
+                  className="bg-primary hover:bg-primary-container text-on-primary font-label-bold text-label-bold px-6 py-3.5 lg:py-2.5 rounded-xl cursor-pointer transition-all hover:scale-[0.98]"
                 >
                   Cari
                 </button>
@@ -202,14 +202,14 @@ export default function TahfidzSummary() {
               <div className="min-h-[160px] flex flex-col justify-center">
                 {!hasSearched ? (
                   <div>
-                    <h4 className="text-xs font-label-bold text-on-surface-variant tracking-wider uppercase mb-3">
+                    <h4 className="text-xs font-label-bold text-on-surface-variant tracking-wider uppercase mb-3 lg:mb-2">
                       Siswa dengan Hafalan Terbaik Bulan Ini:
                     </h4>
-                    <div className="space-y-2.5">
+                    <div className="space-y-2.5 lg:space-y-2">
                       {mockStudents.slice(0, 3).map((student, idx) => (
                         <div
                           key={idx}
-                          className="bg-surface rounded-xl p-3 border border-outline-variant/20 flex justify-between items-center text-xs"
+                          className="bg-surface rounded-xl p-3 lg:p-2.5 border border-outline-variant/20 flex justify-between items-center text-xs"
                         >
                           <div>
                             <p className="font-bold text-on-surface">{student.name}</p>

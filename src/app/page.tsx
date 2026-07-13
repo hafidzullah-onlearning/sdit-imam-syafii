@@ -26,9 +26,9 @@ export default function Home() {
         {/* News & Anak Sholih Combo Section */}
         <section
           id="berita"
-          className="md:min-h-[calc(100vh-4rem)] flex flex-col justify-center py-8 md:py-12 bg-surface-container-low border-b border-surface-variant/30 scroll-mt-16"
+          className="md:min-h-[calc(100vh-4rem)] lg:h-[calc(100vh-4rem)] flex flex-col justify-center py-8 lg:py-6 bg-surface-container-low border-b border-surface-variant/30 scroll-mt-16 lg:overflow-hidden"
         >
-          <div className="max-w-container-max mx-auto px-gutter flex flex-col lg:flex-row gap-lg">
+          <div className="max-w-container-max mx-auto px-gutter flex flex-col lg:flex-row gap-lg w-full">
             <Berita />
             {/* Divider vertikal untuk desktop */}
             <div className="hidden lg:block w-px bg-outline-variant/30 self-stretch my-4"></div>
