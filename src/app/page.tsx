@@ -14,15 +14,19 @@ export default function Home() {
       <Navbar />
 
       <main>
-        <Hero />
-        <Stats />
+        {/* Layar Pertama: Hero + Stats */}
+        <div id="hero" className="md:min-h-[calc(100vh-4rem)] flex flex-col justify-between scroll-mt-16">
+          <Hero />
+          <Stats />
+        </div>
+
         <Keunggulan />
         <VisiMisi />
 
         {/* News & Anak Sholih Combo Section */}
         <section
           id="berita"
-          className="pt-8 md:pt-12 pb-xl bg-surface-container-low border-b border-surface-variant/30 scroll-mt-16"
+          className="md:min-h-[calc(100vh-4rem)] flex flex-col justify-center py-8 md:py-12 bg-surface-container-low border-b border-surface-variant/30 scroll-mt-16"
         >
           <div className="max-w-container-max mx-auto px-gutter flex flex-col lg:flex-row gap-lg">
             <Berita />
