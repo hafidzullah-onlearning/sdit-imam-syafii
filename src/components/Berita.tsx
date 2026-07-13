@@ -1,4 +1,7 @@
 import Image from "next/image";
+import newsPpdb from "@/assets/news-ppdb.jpg";
+import newsMunaqosyah from "@/assets/news-munaqosyah.png";
+import newsHoliday from "@/assets/news-holiday.jpg";
 
 export default function Berita() {
   return (
@@ -22,7 +25,7 @@ export default function Berita() {
             <Image
               className="object-cover group-hover:scale-105 transition-transform duration-500"
               alt="A well-designed graphic announcement banner for school enrollment."
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqyPznSygECLqcICjFz5fgeFvnUUzxBLTSSeSAp-_X_hUIYO-SBnfkdcPrMNq-Ilo3MKK81k2RJyqjXKm-DUkWV-5zK9YtX9IFingn5MvHRmkiOzT1wSgpXbvZ2ITQ8IO8HLcwTFcxw6aL0b18K4e9ZRAG0BtUmNNH27yQBETs9GrPDWGKXPmk0OWn3YNo_TdlLsp0pgQjZmTekGAXHi20RrCF740PwTjxuIAxSKNW7NOBuR5bF31g_w"
+              src={newsPpdb}
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
             />
@@ -52,7 +55,7 @@ export default function Berita() {
             <Image
               className="object-cover group-hover:scale-105 transition-transform duration-500"
               alt="A brightly lit, spacious school hall arranged for a formal examination or ceremony."
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXu8MhXQg7PR_7uIFMPtXe-LM65CJIa2M5p0m7oKFydeaRoe4148uqTsekFLipYcWMM_jrKDdhJxJBF3y7dFgZqpLYGitKrXCJm1RQx9su8Fl_qsaejDfv-ddxYrw4ik7Ikl-SAz2Gylw4b1r340bZFXjsqtyqb1VtPYD4xHYBkzldADuYxTRM3x7F1zuDF9WNOx8lC4Mg3jPMFPIZmwzpFW4eC0VK7xHx8N2MGDjfUQUAEk_wWt2IKl3A"
+              src={newsMunaqosyah}
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
             />
@@ -82,7 +85,7 @@ export default function Berita() {
             <Image
               className="object-cover group-hover:scale-105 transition-transform duration-500"
               alt="A serene outdoor scene of a school courtyard during a quiet, sunny day."
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6sj1t65YG_VPlTJmeZyVrcxSUBuwy2mOGoSAP6em3Af3oKufDr7wdzcYs2VNtfA8npscKjMvfyMMu9tv632_eKZLvKU70OoXByV4YKsRd3wonXEYhfcNL8thN5tmHw-dwQD61v9DeOCaoGM2l3a86MRqCB4SGuYCYP66MGH44THUMK2uCp5EtOW0LjZXs1DMA3xU2ytLKfXAlzTcpPjqMrLlMZ4g6jF7RZYksETW8Xdw1Y72q237uLg"
+              src={newsHoliday}
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
             />

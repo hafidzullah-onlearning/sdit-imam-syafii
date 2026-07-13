@@ -1,4 +1,5 @@
 import Image from "next/image";
+import mapLocation from "@/assets/map-location.jpg";
 
 export default function Footer() {
   return (
@@ -84,7 +85,7 @@ export default function Footer() {
           <h4 className="font-headline-sm text-headline-sm text-surface-bright dark:text-on-surface">Lokasi Kami</h4>
           <div className="w-full h-40 bg-surface/10 rounded-lg overflow-hidden border border-surface/20 relative">
             <Image
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWws3EcXe_xZKkKACVWv1_FRbgi4gr7V9y-iFZbgApZFfyqSv7Ifw9zNFZ_q3CUspDuO_P-CGeZVa0WwWxQ30XRAuk1Ls8sLol02L2-Qxxnz9OaaTlTIQfNA6Q8bCxWhy7S5BQOxIK3dx1F9rU0Ul6sshv6Sbl6A6TFHcHS8WdNYevVrl30YCWCU9bLN1O4710QbGJqjnDOwB9t0ylooE3KlQ6NuEavIFV7PFL7HvcVfXnsRlhDSTjdw"
+              src={mapLocation}
               alt="Peta Lokasi SDIT Imam Syafi'i di Sudiang, Makassar"
               fill
               className="object-cover"

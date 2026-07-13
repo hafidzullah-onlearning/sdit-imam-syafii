@@ -1,4 +1,5 @@
 import Image from "next/image";
+import heroClassroom from "@/assets/hero-classroom.jpg";
 
 export default function Hero() {
   return (
@@ -33,7 +34,7 @@ export default function Hero() {
           <Image
             className="object-cover"
             alt="A bright, modern Islamic elementary school classroom filled with diverse students wearing neat uniforms, engaging happily in a learning activity. Natural sunlight floods the room through large windows, creating a warm, inviting, and professional educational atmosphere. The color palette features soft sky blues, clean whites, and warm woods, reflecting a peaceful and high-quality learning environment."
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAow9mLf8rHIMFMJzd8tih1V5DfURBYIWwQBiUM_xjj6a4wAbJksI843LCYLeIUa24JlONueOUEJYAYInv4-ExHybjPa2dnDIgrRKY3J-hpo0hPAkZxQbXjp20jcXkdx7UL4zySdgXQGJw9lW6qjbMEWX-alfsqK_wY8yjRvFZ7kvDgU49XZgvE0A26558b3y8NZduhH6-HOZ5TTpjl9FK3a1VtYZavmqKMMEoV8CXgR7IkJ1RgeDu1Qg"
+            src={heroClassroom}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
             priority
