@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap");
 @import "tailwindcss";
 
 html {
@@ -71,7 +72,7 @@ html {
 
   /* Spacing */
   --spacing-lg: 48px;
-  --spacing-container-max: 1200px;
+  --spacing-container-max: 1400px;
   --spacing-sm: 12px;
   --spacing-base: 8px;
   --spacing-xs: 4px;

@@ -108,7 +108,7 @@ spacing:
   lg: 48px
   xl: 80px
   gutter: 24px
-  container-max: 1200px
+  container-max: 1400px
 ---
 
 ## Brand & Style
