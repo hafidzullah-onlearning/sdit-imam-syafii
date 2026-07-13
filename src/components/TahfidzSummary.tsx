@@ -78,7 +78,7 @@ export default function TahfidzSummary() {
 
   return (
     <section
-      id="cektahfidz"
+      id="progrestahfidz"
       className="py-xl bg-surface border-y border-surface-variant/30 scroll-mt-20"
     >
       <div className="max-w-container-max mx-auto px-gutter">

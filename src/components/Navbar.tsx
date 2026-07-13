@@ -39,9 +39,9 @@ export default function Navbar() {
           </a>
           <a
             className="text-on-surface-variant font-medium font-label-bold text-label-bold transition-colors duration-200 hover:text-primary"
-            href="#cektahfidz"
+            href="#progrestahfidz"
           >
-            Cek Tahfidz
+            Progres Tahfidz
           </a>
         </div>
         {/* CTA */}
@@ -88,10 +88,10 @@ export default function Navbar() {
           </a>
           <a
             className="text-on-surface-variant font-medium font-label-bold text-label-bold transition-colors duration-200 hover:text-primary py-2"
-            href="#cektahfidz"
+            href="#progrestahfidz"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Cek Tahfidz
+            Progres Tahfidz
           </a>
           <button
             className="w-full bg-primary hover:bg-primary-container text-on-primary font-label-bold text-label-bold py-3 px-6 rounded-lg transition-all duration-200 shadow-sm cursor-pointer"
