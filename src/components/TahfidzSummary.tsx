@@ -79,9 +79,9 @@ export default function TahfidzSummary() {
   return (
     <section
       id="progrestahfidz"
-      className="md:min-h-[calc(100vh-4rem)] lg:h-[calc(100vh-4rem)] flex flex-col justify-center py-8 lg:py-6 bg-surface border-y border-surface-variant/30 scroll-mt-16 lg:overflow-hidden"
+      className="min-h-[calc(100vh-4rem)] flex flex-col justify-center py-12 md:py-16 bg-surface border-y border-surface-variant/30 scroll-mt-16"
     >
-      <div className="max-w-container-max mx-auto px-gutter w-full">
+      <div className="max-w-container-max mx-auto px-gutter">
         <div className="text-center max-w-2xl mx-auto mb-lg lg:mb-4">
           <span className="bg-primary-fixed text-on-primary-fixed px-4 py-1.5 rounded-full font-label-bold text-label-bold inline-flex items-center gap-1.5 mb-3 lg:mb-2">
             <span className="material-symbols-outlined text-[16px]">verified</span>
