@@ -8,7 +8,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-surface/90 backdrop-blur-md dark:bg-inverse-surface/90 fixed top-0 w-full z-50 border-b border-outline-variant/30 shadow-sm">
-      <div className="flex justify-between items-center h-20 px-gutter max-w-container-max mx-auto">
+      <div className="flex justify-between items-center h-16 px-gutter max-w-container-max mx-auto">
         {/* Brand */}
         <div className="flex items-center gap-sm">
           <div className="relative w-10 h-10 overflow-hidden">

@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="bg-surface font-body-md text-on-surface antialiased overflow-x-hidden pt-20">
+    <div className="bg-surface font-body-md text-on-surface antialiased overflow-x-hidden pt-16">
       <Navbar />
 
       <main>

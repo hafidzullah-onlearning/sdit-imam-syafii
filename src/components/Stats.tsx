@@ -1,6 +1,6 @@
 export default function Stats() {
   return (
-    <section id="stats" className="py-12 bg-surface-container-low">
+    <section id="stats" className="py-6 bg-surface-container-low">
       <div className="max-w-container-max mx-auto px-gutter">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-md">
           {/* Card 1: Siswa Aktif */}

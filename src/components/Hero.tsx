@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative py-xl px-gutter max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-lg"
+      className="relative py-md md:py-lg px-gutter max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-lg"
     >
       <div className="absolute inset-0 islamic-pattern -z-10 opacity-50"></div>
       <div className="md:w-1/2 flex flex-col items-start gap-md z-10">
@@ -17,7 +17,7 @@ export default function Hero() {
           </span>
           Penerimaan Siswa Baru Dibuka
         </div>
-        <h1 className="font-headline-xl text-headline-xl md:text-[56px] leading-[1.1] text-on-surface">
+        <h1 className="font-headline-xl text-headline-xl md:text-[44px] leading-[1.1] text-on-surface">
           Membentuk Generasi <span className="text-primary">{"Qur'ani"}</span>, Cerdas, dan Berakhlak Mulia
         </h1>
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-[90%]">
@@ -30,7 +30,7 @@ export default function Hero() {
         </div>
       </div>
       <div className="md:w-1/2 w-full mt-lg md:mt-0 z-10">
-        <div className="relative w-full aspect-[4/3] rounded-[2rem] overflow-hidden oceanic-shadow">
+        <div className="relative w-full aspect-[4/3] max-h-[300px] md:max-h-[350px] rounded-[2rem] overflow-hidden oceanic-shadow">
           <Image
             className="object-cover"
             alt="A bright, modern Islamic elementary school classroom filled with diverse students wearing neat uniforms, engaging happily in a learning activity. Natural sunlight floods the room through large windows, creating a warm, inviting, and professional educational atmosphere. The color palette features soft sky blues, clean whites, and warm woods, reflecting a peaceful and high-quality learning environment."
