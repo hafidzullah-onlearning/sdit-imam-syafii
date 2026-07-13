@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative py-md md:py-lg px-gutter max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-lg"
+      className="relative py-md md:py-lg px-gutter max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-lg scroll-mt-20"
     >
       <div className="absolute inset-0 islamic-pattern -z-10 opacity-50"></div>
       <div className="md:w-1/2 flex flex-col items-start gap-md z-10">
