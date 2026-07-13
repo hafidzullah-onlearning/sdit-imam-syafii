@@ -7,8 +7,13 @@ export default function Footer() {
         {/* Brand & Bio */}
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-sm">
-            <div className="w-8 h-8 rounded-full bg-tertiary-fixed flex items-center justify-center text-inverse-surface font-headline-md">
-              <span className="material-symbols-outlined text-[20px]">school</span>
+            <div className="relative w-8 h-8 overflow-hidden">
+              <Image
+                src="/logo.png"
+                alt="Logo SDIT Imam Syafi'i"
+                fill
+                className="object-contain"
+              />
             </div>
             <span className="text-headline-lg font-headline-lg text-surface-bright dark:text-on-surface">
               SDIT Imam Syafi&apos;i

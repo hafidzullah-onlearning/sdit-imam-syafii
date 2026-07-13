@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -10,8 +11,13 @@ export default function Navbar() {
       <div className="flex justify-between items-center h-20 px-gutter max-w-container-max mx-auto">
         {/* Brand */}
         <div className="flex items-center gap-sm">
-          <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-on-primary font-headline-md">
-            <span className="material-symbols-outlined">school</span>
+          <div className="relative w-10 h-10 overflow-hidden">
+            <Image
+              src="/logo.png"
+              alt="Logo SDIT Imam Syafi'i"
+              fill
+              className="object-contain"
+            />
           </div>
           <span className="text-headline-md font-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight">
             {"SDIT Imam Syafi'i"}
