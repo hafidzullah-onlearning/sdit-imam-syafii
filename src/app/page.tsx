@@ -2,10 +2,10 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import Keunggulan from "@/components/Keunggulan";
-import TahfidzSummary from "@/components/TahfidzSummary";
 import VisiMisi from "@/components/VisiMisi";
 import Berita from "@/components/Berita";
 import AnakSholih from "@/components/AnakSholih";
+import TahfidzSummary from "@/components/TahfidzSummary";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -17,7 +17,6 @@ export default function Home() {
         <Hero />
         <Stats />
         <Keunggulan />
-        <TahfidzSummary />
         <VisiMisi />
 
         {/* News & Anak Sholih Combo Section */}
@@ -30,6 +29,8 @@ export default function Home() {
             <AnakSholih />
           </div>
         </section>
+
+        <TahfidzSummary />
       </main>
 
       <Footer />
