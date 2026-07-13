@@ -79,7 +79,7 @@ export default function TahfidzSummary() {
   return (
     <section
       id="progrestahfidz"
-      className="pt-8 md:pt-12 pb-xl bg-surface border-y border-surface-variant/30 scroll-mt-16"
+      className="md:min-h-[calc(100vh-4rem)] flex flex-col justify-center py-8 md:py-12 bg-surface border-y border-surface-variant/30 scroll-mt-16"
     >
       <div className="max-w-container-max mx-auto px-gutter">
         <div className="text-center max-w-2xl mx-auto mb-lg">
