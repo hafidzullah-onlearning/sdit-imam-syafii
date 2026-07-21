@@ -14,7 +14,6 @@ export default function Navbar() {
     { label: "Profil", href: "/profil" },
     { label: "Berita", href: "/berita" },
     { label: "Progres Tahfidz", href: "/tahfidz" },
-    { label: "PPDB", href: "/ppdb" },
   ];
 
   const isActive = (path: string) => {
@@ -41,8 +40,8 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Links (Web) */}
-        <div className="hidden md:flex gap-lg items-center">
+        {/* Right Aligned Navigation & CTA */}
+        <div className="hidden md:flex items-center gap-lg">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -56,17 +55,15 @@ export default function Navbar() {
               {item.label}
             </Link>
           ))}
-        </div>
 
-        {/* CTA */}
-        <div className="hidden md:block">
           <Link
             href="/ppdb"
-            className="inline-block bg-primary hover:bg-primary-container text-on-primary font-label-bold text-label-bold py-2.5 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md hover:scale-95 text-center"
+            className="inline-block bg-primary hover:bg-primary-container text-on-primary font-label-bold text-label-bold py-2.5 px-6 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md hover:scale-95 text-center ml-2"
           >
             Daftar PPDB
           </Link>
         </div>
+
 
         {/* Mobile Menu Toggle */}
         <button
