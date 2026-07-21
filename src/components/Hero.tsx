@@ -24,32 +24,10 @@ export default function Hero() {
         <p className="font-body-lg text-body-lg text-on-surface-variant max-w-[90%]">
           Sekolah Dasar Islam Terpadu pilihan terbaik di BTN Tirasa, Sudiang, Makassar. Kami berkomitmen memberikan pendidikan seimbang antara ilmu dunia dan akhirat.
         </p>
-        <div className="flex flex-wrap gap-4 mt-4">
-          <Link
-            href="/ppdb"
-            className="bg-primary-container hover:bg-primary text-on-primary-container hover:text-on-primary font-label-bold text-label-bold py-4 px-8 rounded-full transition-all duration-200 oceanic-shadow hover:-translate-y-1 inline-block"
-          >
-            Daftar PPDB Online
-          </Link>
-        </div>
-      </div>
-
-      <div className="md:w-1/2 w-full mt-lg md:mt-0 z-10 relative">
-        {/* Main Image Container */}
-        <div className="relative w-full aspect-[4/3] max-h-[300px] md:max-h-[350px]">
-          <div className="relative w-full h-full rounded-[2rem] overflow-hidden oceanic-shadow border border-surface-variant/40">
-            <Image
-              className="object-cover"
-              alt="A bright, modern Islamic elementary school classroom filled with diverse students engaging in learning."
-              src={heroClassroom}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              priority
-            />
-          </div>
-
-          {/* Floating Badge 1: Top-Right (Akreditasi A) */}
-          <div className="absolute -top-4 -right-4 md:-right-6 bg-surface/95 backdrop-blur-md p-3.5 px-4 rounded-2xl oceanic-shadow flex items-center gap-3 border border-surface-variant/50 z-20">
+        {/* Highlight Info Cards (Akreditasi & Target Tahfidz) */}
+        <div className="flex flex-wrap items-center gap-md mt-2">
+          {/* Card 1: Akreditasi A */}
+          <div className="bg-surface-container-low p-3.5 px-4 rounded-2xl oceanic-shadow flex items-center gap-3 border border-surface-variant/40">
             <div className="w-10 h-10 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary shadow-sm">
               <span className="material-symbols-outlined text-[24px]">military_tech</span>
             </div>
@@ -59,8 +37,8 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Floating Badge 2: Bottom-Left (Target Tahfidz) */}
-          <div className="absolute -bottom-4 -left-4 md:-left-6 bg-surface/95 backdrop-blur-md p-3.5 px-4 rounded-2xl oceanic-shadow flex items-center gap-3 border border-surface-variant/50 z-20">
+          {/* Card 2: Target Tahfidz */}
+          <div className="bg-surface-container-low p-3.5 px-4 rounded-2xl oceanic-shadow flex items-center gap-3 border border-surface-variant/40">
             <div className="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center text-primary shadow-sm">
               <span className="material-symbols-outlined text-[24px]">menu_book</span>
             </div>
@@ -71,6 +49,21 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      <div className="md:w-1/2 w-full mt-lg md:mt-0 z-10 relative">
+        {/* Main Image Container */}
+        <div className="relative w-full aspect-[4/3] max-h-[320px] md:max-h-[380px] rounded-[2rem] overflow-hidden oceanic-shadow border border-surface-variant/40">
+          <Image
+            className="object-cover"
+            alt="A bright, modern Islamic elementary school classroom filled with diverse students engaging in learning."
+            src={heroClassroom}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            priority
+          />
+        </div>
+      </div>
+
 
     </section>
   );
