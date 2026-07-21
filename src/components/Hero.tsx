@@ -5,8 +5,9 @@ import heroClassroom from "@/assets/hero-classroom.jpg";
 export default function Hero() {
   return (
     <section
-      className="relative py-md md:py-6 px-gutter max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-lg"
+      className="relative md:min-h-[calc(100vh-4rem)] py-md md:py-6 px-gutter max-w-container-max mx-auto flex flex-col md:flex-row items-center gap-lg justify-center"
     >
+
       <div className="absolute inset-0 islamic-pattern -z-10 opacity-50"></div>
       <div className="md:w-1/2 flex flex-col items-start gap-md z-10">
         <div className="bg-secondary-fixed text-on-secondary-fixed px-4 py-2 rounded-full font-label-bold text-label-bold inline-flex items-center gap-2">
@@ -52,7 +53,7 @@ export default function Hero() {
 
       <div className="md:w-1/2 w-full mt-lg md:mt-0 z-10 relative">
         {/* Main Image Container */}
-        <div className="relative w-full aspect-[4/3] max-h-[320px] md:max-h-[380px] rounded-[2rem] overflow-hidden oceanic-shadow border border-surface-variant/40">
+        <div className="relative w-full aspect-[4/3] max-h-[360px] md:max-h-[440px] rounded-[2rem] overflow-hidden oceanic-shadow border border-surface-variant/40">
           <Image
             className="object-cover"
             alt="A bright, modern Islamic elementary school classroom filled with diverse students engaging in learning."
@@ -63,6 +64,7 @@ export default function Hero() {
           />
         </div>
       </div>
+
 
 
     </section>
