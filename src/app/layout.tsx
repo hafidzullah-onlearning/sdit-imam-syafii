@@ -1,15 +1,25 @@
 import type { Metadata } from "next";
 import { Montserrat, Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const materialSymbols = localFont({
+  src: "../assets/fonts/material-symbols-outlined.woff2",
+  variable: "--font-material-symbols",
+  display: "block",
+  weight: "100 700",
 });
 
 export const metadata: Metadata = {
@@ -24,17 +34,11 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${montserrat.variable} ${inter.variable} h-full antialiased`}
+      lang="id"
+      className={`${montserrat.variable} ${inter.variable} ${materialSymbols.variable} h-full antialiased`}
     >
-      <head>
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
-        />
-      </head>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }
+
