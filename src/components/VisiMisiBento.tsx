@@ -40,7 +40,7 @@ export default function VisiMisiBento() {
           </div>
 
           {/* Mission Card 1 */}
-          <div className="bg-surface-container-low p-6 rounded-2xl oceanic-shadow border-t-4 border-tertiary-container hover:-translate-y-1 transition-transform duration-300 border-x border-b border-surface-variant/30 flex flex-col justify-between">
+          <div className="bg-surface rounded-2xl p-md oceanic-shadow border-t-4 border-tertiary-container hover:-translate-y-1 transition-transform duration-300">
             <div>
               <div className="w-12 h-12 bg-primary/10 text-primary flex items-center justify-center rounded-xl mb-4">
                 <span className="material-symbols-outlined text-[28px]">menu_book</span>
@@ -55,7 +55,7 @@ export default function VisiMisiBento() {
           </div>
 
           {/* Mission Card 2 */}
-          <div className="bg-surface-container-low p-6 rounded-2xl oceanic-shadow border-t-4 border-primary-container hover:-translate-y-1 transition-transform duration-300 border-x border-b border-surface-variant/30 flex flex-col justify-between">
+          <div className="bg-surface rounded-2xl p-md oceanic-shadow border-t-4 border-primary-container hover:-translate-y-1 transition-transform duration-300">
             <div>
               <div className="w-12 h-12 bg-tertiary/10 text-tertiary flex items-center justify-center rounded-xl mb-4">
                 <span className="material-symbols-outlined text-[28px]">diversity_3</span>
@@ -70,7 +70,7 @@ export default function VisiMisiBento() {
           </div>
 
           {/* Mission Card 3 */}
-          <div className="bg-surface-container-low p-6 rounded-2xl oceanic-shadow border-t-4 border-secondary hover:-translate-y-1 transition-transform duration-300 border-x border-b border-surface-variant/30 flex flex-col justify-between">
+          <div className="bg-surface rounded-2xl p-md oceanic-shadow border-t-4 border-secondary hover:-translate-y-1 transition-transform duration-300">
             <div>
               <div className="w-12 h-12 bg-secondary/10 text-secondary flex items-center justify-center rounded-xl mb-4">
                 <span className="material-symbols-outlined text-[28px]">psychology</span>
@@ -83,6 +83,7 @@ export default function VisiMisiBento() {
               </p>
             </div>
           </div>
+
         </div>
       </div>
     </section>
