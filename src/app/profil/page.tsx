@@ -19,24 +19,9 @@ export default function ProfilPage() {
       <Navbar />
 
       <main className="flex-grow">
-        {/* Header Banner */}
-        <section className="bg-surface-container-low py-12 md:py-16 border-b border-surface-variant/30">
-          <div className="max-w-container-max mx-auto px-gutter text-center">
-            <div className="inline-flex items-center gap-2 bg-primary-fixed text-on-primary-fixed px-4 py-1.5 rounded-full font-label-bold text-xs mb-4">
-              <span className="material-symbols-outlined text-[16px]">domain</span>
-              Mengenal SDIT Imam Syafi'i
-            </div>
-            <h1 className="font-headline-xl text-headline-xl md:text-[40px] text-on-surface mb-3">
-              Profil Sekolah &amp; Sejarah
-            </h1>
-            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-              Lembaga pendidikan dasar Islam terpadu yang berdedikasi mencetak generasi Rabbani yang unggul secara akademik dan mulia secara akhlak.
-            </p>
-          </div>
-        </section>
-
         {/* Sejarah Section */}
         <Sejarah />
+
 
         {/* Visi Misi Bento Section */}
         <VisiMisiBento />
