@@ -34,35 +34,44 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="md:w-1/2 w-full mt-lg md:mt-0 z-10">
-        <div className="relative w-full aspect-[4/3] max-h-[300px] md:max-h-[350px] rounded-[2rem] overflow-hidden oceanic-shadow">
-          <Image
-            className="object-cover"
-            alt="A bright, modern Islamic elementary school classroom filled with diverse students wearing neat uniforms, engaging happily in a learning activity. Natural sunlight floods the room through large windows, creating a warm, inviting, and professional educational atmosphere. The color palette features soft sky blues, clean whites, and warm woods, reflecting a peaceful and high-quality learning environment."
-            src={heroClassroom}
-            fill
-            sizes="(max-width: 768px) 100vw, 50vw"
-            priority
-          />
-          {/* Floating Badge */}
-          <div className="absolute -bottom-6 -left-6 bg-surface p-4 rounded-2xl oceanic-shadow flex items-center gap-3 border border-surface-variant/50 hidden md:flex z-20">
-            <div className="w-12 h-12 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container">
-              <span className="material-symbols-outlined">menu_book</span>
+      <div className="md:w-1/2 w-full mt-lg md:mt-0 z-10 relative">
+        {/* Main Image Container */}
+        <div className="relative w-full aspect-[4/3] max-h-[300px] md:max-h-[350px]">
+          <div className="relative w-full h-full rounded-[2rem] overflow-hidden oceanic-shadow border border-surface-variant/40">
+            <Image
+              className="object-cover"
+              alt="A bright, modern Islamic elementary school classroom filled with diverse students engaging in learning."
+              src={heroClassroom}
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              priority
+            />
+          </div>
+
+          {/* Floating Badge 1: Top-Right (Akreditasi A) */}
+          <div className="absolute -top-4 -right-4 md:-right-6 bg-surface/95 backdrop-blur-md p-3.5 px-4 rounded-2xl oceanic-shadow flex items-center gap-3 border border-surface-variant/50 z-20">
+            <div className="w-10 h-10 rounded-xl bg-tertiary-fixed flex items-center justify-center text-tertiary shadow-sm">
+              <span className="material-symbols-outlined text-[24px]">military_tech</span>
             </div>
             <div>
-              <p className="font-label-bold text-label-bold text-on-surface">Target Tahfidz</p>
-              <p className="font-body-sm text-body-sm text-on-surface-variant">6 Juz / 6 Tahun</p>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">Akreditasi</p>
+              <p className="text-sm font-bold text-on-surface leading-tight">A (Sangat Baik)</p>
             </div>
           </div>
-          <div className="absolute bottom-4 left-4 bg-[#25D366] text-white p-4 rounded-xl flex items-center gap-3 shadow-lg z-20">
-            <span className="material-symbols-outlined text-[32px]">military_tech</span>
-            <div className="flex flex-col">
-              <span className="text-[10px] font-label-bold uppercase tracking-wider opacity-90">Akreditasi</span>
-              <span className="text-lg font-bold leading-tight">A (Sangat Baik)</span>
+
+          {/* Floating Badge 2: Bottom-Left (Target Tahfidz) */}
+          <div className="absolute -bottom-4 -left-4 md:-left-6 bg-surface/95 backdrop-blur-md p-3.5 px-4 rounded-2xl oceanic-shadow flex items-center gap-3 border border-surface-variant/50 z-20">
+            <div className="w-10 h-10 rounded-xl bg-primary-fixed flex items-center justify-center text-primary shadow-sm">
+              <span className="material-symbols-outlined text-[24px]">menu_book</span>
+            </div>
+            <div>
+              <p className="text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">Target Tahfidz</p>
+              <p className="text-sm font-bold text-on-surface leading-tight">6 Juz / 6 Tahun</p>
             </div>
           </div>
         </div>
       </div>
+
     </section>
   );
 }
