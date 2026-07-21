@@ -3,7 +3,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Sejarah from "@/components/Sejarah";
 import Keunggulan from "@/components/Keunggulan";
-import VisiMisi from "@/components/VisiMisi";
+import VisiMisiBento from "@/components/VisiMisiBento";
 import StrukturOrganisasi from "@/components/StrukturOrganisasi";
 import Link from "next/link";
 
@@ -38,11 +38,12 @@ export default function ProfilPage() {
         {/* Sejarah Section */}
         <Sejarah />
 
-        {/* Visi Misi Section */}
-        <VisiMisi />
+        {/* Visi Misi Bento Section */}
+        <VisiMisiBento />
 
         {/* Keunggulan & Kurikulum */}
         <Keunggulan />
+
 
         {/* Struktur Organisasi & Pengelola */}
         <StrukturOrganisasi />
