@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import newsPpdb from "@/assets/news-ppdb.jpg";
 import newsMunaqosyah from "@/assets/news-munaqosyah.png";
 import newsHoliday from "@/assets/news-holiday.jpg";
@@ -13,14 +14,20 @@ export default function Berita() {
             Update terkini kegiatan dan pengumuman SDIT Imam Syafi&apos;i.
           </p>
         </div>
-        <button className="hidden md:flex items-center gap-2 text-primary font-label-bold text-label-bold hover:bg-primary/5 px-4 py-2 rounded-lg transition-colors cursor-pointer">
+        <Link
+          href="/berita"
+          className="hidden md:flex items-center gap-2 text-primary font-label-bold text-label-bold hover:bg-primary/5 px-4 py-2 rounded-lg transition-colors"
+        >
           Lihat Semua Berita
           <span className="material-symbols-outlined">arrow_forward</span>
-        </button>
+        </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-md">
         {/* News Card 1 */}
-        <div className="bg-surface rounded-2xl overflow-hidden oceanic-shadow flex flex-col group cursor-pointer">
+        <Link
+          href="/berita/jadwal-pendaftaran-ppdb-gelombang-1"
+          className="bg-surface rounded-2xl overflow-hidden oceanic-shadow flex flex-col group cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+        >
           <div className="h-40 lg:h-32 overflow-hidden relative">
             <Image
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -48,9 +55,12 @@ export default function Berita() {
               Baca Selengkapnya <span className="material-symbols-outlined text-[14px]">chevron_right</span>
             </span>
           </div>
-        </div>
+        </Link>
         {/* News Card 2 */}
-        <div className="bg-surface rounded-2xl overflow-hidden oceanic-shadow flex flex-col group cursor-pointer">
+        <Link
+          href="/berita/agenda-munaqosyah-tahfidz"
+          className="bg-surface rounded-2xl overflow-hidden oceanic-shadow flex flex-col group cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+        >
           <div className="h-40 lg:h-32 overflow-hidden relative">
             <Image
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -78,9 +88,12 @@ export default function Berita() {
               Baca Selengkapnya <span className="material-symbols-outlined text-[14px]">chevron_right</span>
             </span>
           </div>
-        </div>
+        </Link>
         {/* News Card 3 */}
-        <div className="bg-surface rounded-2xl overflow-hidden oceanic-shadow flex flex-col group cursor-pointer">
+        <Link
+          href="/berita/libur-semester-ganjil"
+          className="bg-surface rounded-2xl overflow-hidden oceanic-shadow flex flex-col group cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+        >
           <div className="h-40 lg:h-32 overflow-hidden relative">
             <Image
               className="object-cover group-hover:scale-105 transition-transform duration-500"
@@ -108,11 +121,15 @@ export default function Berita() {
               Baca Selengkapnya <span className="material-symbols-outlined text-[14px]">chevron_right</span>
             </span>
           </div>
-        </div>
+        </Link>
       </div>
-      <button className="md:hidden w-full mt-6 flex justify-center items-center gap-2 text-primary border border-primary font-label-bold text-label-bold px-4 py-3 rounded-lg transition-colors cursor-pointer">
+      <Link
+        href="/berita"
+        className="md:hidden w-full mt-6 flex justify-center items-center gap-2 text-primary border border-primary font-label-bold text-label-bold px-4 py-3 rounded-lg transition-colors text-center"
+      >
         Lihat Semua Berita
-      </button>
+      </Link>
     </div>
   );
 }
+

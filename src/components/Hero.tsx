@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import heroClassroom from "@/assets/hero-classroom.jpg";
 
 export default function Hero() {
@@ -24,11 +25,15 @@ export default function Hero() {
           Sekolah Dasar Islam Terpadu pilihan terbaik di BTN Tirasa, Sudiang, Makassar. Kami berkomitmen memberikan pendidikan seimbang antara ilmu dunia dan akhirat.
         </p>
         <div className="flex flex-wrap gap-4 mt-4">
-          <button className="bg-primary-container hover:bg-primary text-on-primary-container hover:text-on-primary font-label-bold text-label-bold py-4 px-8 rounded-full transition-all duration-200 oceanic-shadow hover:-translate-y-1 cursor-pointer">
+          <Link
+            href="/ppdb"
+            className="bg-primary-container hover:bg-primary text-on-primary-container hover:text-on-primary font-label-bold text-label-bold py-4 px-8 rounded-full transition-all duration-200 oceanic-shadow hover:-translate-y-1 inline-block"
+          >
             Daftar PPDB Online
-          </button>
+          </Link>
         </div>
       </div>
+
       <div className="md:w-1/2 w-full mt-lg md:mt-0 z-10">
         <div className="relative w-full aspect-[4/3] max-h-[300px] md:max-h-[350px] rounded-[2rem] overflow-hidden oceanic-shadow">
           <Image

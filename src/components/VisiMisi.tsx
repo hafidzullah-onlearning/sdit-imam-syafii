@@ -1,8 +1,9 @@
+import Link from "next/link";
+
 export default function VisiMisi() {
   return (
     <section
-      id="profil"
-      className="md:min-h-[calc(100vh-4rem)] flex flex-col justify-center py-8 md:py-12 px-gutter max-w-container-max mx-auto scroll-mt-16"
+      className="md:min-h-[calc(100vh-4rem)] flex flex-col justify-center py-8 md:py-12 px-gutter max-w-container-max mx-auto"
     >
       <div className="bg-primary text-on-primary rounded-[2rem] p-lg md:p-xl flex flex-col md:flex-row items-center gap-lg relative overflow-hidden">
         {/* Abstract Graphic */}
@@ -12,14 +13,15 @@ export default function VisiMisi() {
           <p className="font-body-lg text-body-lg text-on-primary/80 mb-md">
             Mewujudkan institusi pendidikan dasar Islam terpadu yang profesional dalam mencetak generasi dambaan umat.
           </p>
-          <a
+          <Link
             className="inline-flex items-center gap-2 text-on-primary font-label-bold text-label-bold hover:text-tertiary-container transition-colors"
-            href="#profil"
+            href="/profil"
           >
             Lihat Profil Lengkap
             <span className="material-symbols-outlined text-[20px]">arrow_forward</span>
-          </a>
+          </Link>
         </div>
+
         <div className="md:w-1/2 z-10 bg-surface/10 backdrop-blur-sm rounded-2xl p-md border border-white/10">
           <div className="mb-4">
             <div className="flex items-center gap-3 mb-2">
