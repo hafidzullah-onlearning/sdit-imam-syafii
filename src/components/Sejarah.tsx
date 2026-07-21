@@ -3,7 +3,8 @@ import historySchool from "@/assets/history-school.jpg";
 
 export default function Sejarah() {
   return (
-    <section className="relative md:min-h-[calc(100vh-4rem)] flex items-center justify-center py-12 md:py-16 bg-surface islamic-pattern border-b border-surface-variant/30">
+    <section className="relative md:min-h-[calc(100vh-4rem)] flex items-center justify-center py-8 md:py-0 bg-surface islamic-pattern border-b border-surface-variant/30">
+
       <div className="px-gutter max-w-container-max mx-auto grid md:grid-cols-2 gap-xl items-center w-full">
         <div className="space-y-md">
           <div className="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary font-label-bold text-xs uppercase tracking-wider">
