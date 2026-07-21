@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Sejarah from "@/components/Sejarah";
 import Keunggulan from "@/components/Keunggulan";
 import VisiMisi from "@/components/VisiMisi";
+import StrukturOrganisasi from "@/components/StrukturOrganisasi";
 import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Profil Sekolah & Visi Misi - SDIT Imam Syafi'i",
   description:
-    "Profil lengkap SDIT Imam Syafi'i Sudiang Makassar. Mengenal Visi & Misi, Keunggulan Kurikulum Integratif, Fasilitas Modern, dan Tenaga Pendidik.",
+    "Profil lengkap SDIT Imam Syafi'i Sudiang Makassar. Mengenal Sejarah, Visi & Misi, Keunggulan Kurikulum, Struktur Pengelola, dan Fasilitas Modern.",
 };
 
 export default function ProfilPage() {
@@ -25,7 +27,7 @@ export default function ProfilPage() {
               Mengenal SDIT Imam Syafi'i
             </div>
             <h1 className="font-headline-xl text-headline-xl md:text-[40px] text-on-surface mb-3">
-              Profil Sekolah &amp; Visi Misi
+              Profil Sekolah &amp; Sejarah
             </h1>
             <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
               Lembaga pendidikan dasar Islam terpadu yang berdedikasi mencetak generasi Rabbani yang unggul secara akademik dan mulia secara akhlak.
@@ -33,14 +35,21 @@ export default function ProfilPage() {
           </div>
         </section>
 
+        {/* Sejarah Section */}
+        <Sejarah />
+
         {/* Visi Misi Section */}
         <VisiMisi />
 
         {/* Keunggulan & Kurikulum */}
         <Keunggulan />
 
+        {/* Struktur Organisasi & Pengelola */}
+        <StrukturOrganisasi />
+
         {/* Additional Profil Details Section */}
         <section className="py-xl bg-surface">
+
           <div className="max-w-container-max mx-auto px-gutter">
             <div className="text-center max-w-2xl mx-auto mb-lg">
               <h2 className="font-headline-lg text-headline-lg text-on-surface mb-sm">
