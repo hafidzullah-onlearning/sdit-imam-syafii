@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import TahfidzSummary from "@/components/TahfidzSummary";
-import Link from "next/link";
+import TahfidzTable from "@/components/TahfidzTable";
 
 export const metadata: Metadata = {
   title: "Portal Monitoring Tahfidz Al-Qur'an - SDIT Imam Syafi'i",
@@ -12,31 +11,38 @@ export const metadata: Metadata = {
 
 export default function TahfidzPage() {
   return (
-    <div className="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col pt-16">
+    <div className="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col pt-16 relative overflow-hidden">
       <Navbar />
 
-      <main className="flex-grow">
+      <main className="flex-grow relative">
+        {/* Subtle Pattern Background */}
+        <div className="absolute inset-0 islamic-pattern -z-10 pointer-events-none"></div>
+
         {/* Header Banner */}
-        <section className="bg-surface-container-low py-12 md:py-16 border-b border-surface-variant/30">
+        <section className="bg-surface-container-low/80 backdrop-blur-sm py-12 md:py-16 border-b border-surface-variant/30">
           <div className="max-w-container-max mx-auto px-gutter text-center">
             <div className="inline-flex items-center gap-2 bg-primary-fixed text-on-primary-fixed px-4 py-1.5 rounded-full font-label-bold text-xs mb-4">
               <span className="material-symbols-outlined text-[16px]">menu_book</span>
-              Program Unggulan Unggulan
+              Program Unggulan
             </div>
-            <h1 className="font-headline-xl text-headline-xl md:text-[40px] text-on-surface mb-3">
-              Portal Monitoring Tahfidz Al-Qur&apos;an
+            <h1 className="font-headline-xl text-headline-xl md:text-[40px] text-primary mb-3">
+              Informasi Capaian Tahfidz Al-Qur&apos;an
             </h1>
             <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
-              Memantau perkembangan hafalan ananda secara berkala dengan sistem evaluasi talaqqi dan mutaba&apos;ah terstruktur.
+              Halaman pemantauan hafalan Al-Qur&apos;an siswa SDIT Imam Syafi&apos;i secara berkala dan transparan bagi wali murid.
             </p>
           </div>
         </section>
 
-        {/* Main Tahfidz Search & Stats Widget */}
-        <TahfidzSummary />
+        {/* Interactive Tahfidz Table Section */}
+        <section className="py-12 md:py-16">
+          <div className="max-w-container-max mx-auto px-gutter">
+            <TahfidzTable />
+          </div>
+        </section>
 
         {/* Tahfidz Method & Milestones */}
-        <section className="py-xl bg-surface border-t border-surface-variant/30">
+        <section className="py-xl bg-surface-container-lowest/60 border-t border-surface-variant/30">
           <div className="max-w-container-max mx-auto px-gutter">
             <div className="text-center max-w-2xl mx-auto mb-lg">
               <h2 className="font-headline-lg text-headline-lg text-on-surface mb-sm">
