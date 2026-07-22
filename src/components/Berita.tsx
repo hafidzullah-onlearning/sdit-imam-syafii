@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import newsPpdb from "@/assets/news-ppdb.jpg";
 import newsMunaqosyah from "@/assets/news-munaqosyah.png";
-import newsHoliday from "@/assets/news-holiday.jpg";
+import newsMabit from "@/assets/news-mabit.jpg";
 
 export default function Berita() {
   return (
@@ -22,100 +22,103 @@ export default function Berita() {
           <span className="material-symbols-outlined">arrow_forward</span>
         </Link>
       </div>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-md">
         {/* News Card 1 */}
         <Link
-          href="/berita/jadwal-pendaftaran-ppdb-gelombang-1"
-          className="bg-surface rounded-2xl overflow-hidden oceanic-shadow flex flex-col group cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+          href="/berita/mabit-qiyamul-lail-kelas-6"
+          className="bg-surface-container-lowest rounded-2xl overflow-hidden oceanic-shadow border-t-4 border-tertiary-container flex flex-col group cursor-pointer hover:-translate-y-1 transition-all duration-300"
         >
-          <div className="h-40 lg:h-32 overflow-hidden relative">
+          <div className="h-40 lg:h-32 overflow-hidden relative bg-surface-container">
             <Image
               className="object-cover group-hover:scale-105 transition-transform duration-500"
-              alt="A well-designed graphic announcement banner for school enrollment."
-              src={newsPpdb}
+              alt="Mabit & Qiyamul Lail Bersama Kelas 6"
+              src={newsMabit}
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
             />
-            <div className="absolute top-3 left-3 bg-primary text-on-primary px-2.5 py-0.5 rounded-full font-label-bold text-[11px] z-10">
-              Pengumuman
+            <div className="absolute top-3 left-3 bg-primary/10 text-primary border border-primary/20 backdrop-blur-sm px-2.5 py-0.5 rounded-full font-label-bold text-[11px] z-10">
+              Kegiatan
             </div>
           </div>
           <div className="p-4 lg:p-3 flex flex-col flex-grow">
-            <div className="text-xs text-on-surface-variant mb-2 lg:mb-1 flex items-center gap-1 font-body-sm">
+            <div className="text-xs text-outline mb-2 lg:mb-1 flex items-center gap-1 font-body-sm">
               <span className="material-symbols-outlined text-[14px]">calendar_today</span>
-              15 Oktober 2024
+              12 Okt 2024
             </div>
             <h3 className="font-headline-md text-on-surface text-base lg:text-sm mb-2 lg:mb-1 group-hover:text-primary transition-colors leading-tight">
-              Jadwal Pendaftaran PPDB Gelombang 1
+              Mabit &amp; Qiyamul Lail Bersama Kelas 6
             </h3>
-            <p className="font-body-sm text-body-sm text-on-surface-variant mb-4 lg:mb-2 flex-grow line-clamp-2 text-sm lg:text-xs">
-              Penerimaan Peserta Didik Baru (PPDB) Tahun Ajaran 2024/2025 resmi dibuka. Kuota terbatas.
+            <p className="font-body-sm text-on-surface-variant mb-4 lg:mb-2 flex-grow line-clamp-2 text-sm lg:text-xs">
+              Membangun spiritualitas sejak dini melalui kegiatan Malam Bina Iman dan Taqwa (Mabit).
             </p>
             <span className="text-primary font-label-bold text-[12px] mt-auto inline-flex items-center gap-1">
               Baca Selengkapnya <span className="material-symbols-outlined text-[14px]">chevron_right</span>
             </span>
           </div>
         </Link>
+
         {/* News Card 2 */}
         <Link
           href="/berita/agenda-munaqosyah-tahfidz"
-          className="bg-surface rounded-2xl overflow-hidden oceanic-shadow flex flex-col group cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+          className="bg-surface-container-lowest rounded-2xl overflow-hidden oceanic-shadow flex flex-col group cursor-pointer hover:-translate-y-1 transition-all duration-300"
         >
-          <div className="h-40 lg:h-32 overflow-hidden relative">
+          <div className="h-40 lg:h-32 overflow-hidden relative bg-surface-container">
             <Image
               className="object-cover group-hover:scale-105 transition-transform duration-500"
-              alt="A brightly lit, spacious school hall arranged for a formal examination or ceremony."
+              alt="Ujian Tahfidz Semester Ganjil"
               src={newsMunaqosyah}
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
             />
-            <div className="absolute top-3 left-3 bg-tertiary-container text-on-tertiary-container px-2.5 py-0.5 rounded-full font-label-bold text-[11px] z-10">
+            <div className="absolute top-3 left-3 bg-secondary-container text-on-secondary-container px-2.5 py-0.5 rounded-full font-label-bold text-[11px] z-10">
               Akademik
             </div>
           </div>
           <div className="p-4 lg:p-3 flex flex-col flex-grow">
-            <div className="text-xs text-on-surface-variant mb-2 lg:mb-1 flex items-center gap-1 font-body-sm">
+            <div className="text-xs text-outline mb-2 lg:mb-1 flex items-center gap-1 font-body-sm">
               <span className="material-symbols-outlined text-[14px]">calendar_today</span>
-              10 Oktober 2024
+              10 Okt 2024
             </div>
             <h3 className="font-headline-md text-on-surface text-base lg:text-sm mb-2 lg:mb-1 group-hover:text-primary transition-colors leading-tight">
-              Agenda Munaqosyah Tahfidz
+              Ujian Tahfidz Semester Ganjil Dimulai
             </h3>
-            <p className="font-body-sm text-body-sm text-on-surface-variant mb-4 lg:mb-2 flex-grow line-clamp-2 text-sm lg:text-xs">
-              Ujian tahfidz terbuka untuk siswa kelas 1-6 akan dilaksanakan pekan depan.
+            <p className="font-body-sm text-on-surface-variant mb-4 lg:mb-2 flex-grow line-clamp-2 text-sm lg:text-xs">
+              Pelaksanaan evaluasi hafalan Al-Qur'an berjalan dengan khidmat.
             </p>
             <span className="text-primary font-label-bold text-[12px] mt-auto inline-flex items-center gap-1">
               Baca Selengkapnya <span className="material-symbols-outlined text-[14px]">chevron_right</span>
             </span>
           </div>
         </Link>
+
         {/* News Card 3 */}
         <Link
-          href="/berita/libur-semester-ganjil"
-          className="bg-surface rounded-2xl overflow-hidden oceanic-shadow flex flex-col group cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+          href="/berita/jadwal-pendaftaran-ppdb-gelombang-1"
+          className="bg-surface-container-lowest rounded-2xl overflow-hidden oceanic-shadow flex flex-col group cursor-pointer hover:-translate-y-1 transition-all duration-300"
         >
-          <div className="h-40 lg:h-32 overflow-hidden relative">
+          <div className="h-40 lg:h-32 overflow-hidden relative bg-surface-container">
             <Image
               className="object-cover group-hover:scale-105 transition-transform duration-500"
-              alt="A serene outdoor scene of a school courtyard during a quiet, sunny day."
-              src={newsHoliday}
+              alt="Pembukaan Pendaftaran Siswa Baru (PPDB)"
+              src={newsPpdb}
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
             />
-            <div className="absolute top-3 left-3 bg-surface-container-high text-on-surface px-2.5 py-0.5 rounded-full font-label-bold text-[11px] z-10">
-              Informasi
+            <div className="absolute top-3 left-3 bg-error-container text-on-error-container px-2.5 py-0.5 rounded-full font-label-bold text-[11px] z-10">
+              Pengumuman
             </div>
           </div>
           <div className="p-4 lg:p-3 flex flex-col flex-grow">
-            <div className="text-xs text-on-surface-variant mb-2 lg:mb-1 flex items-center gap-1 font-body-sm">
+            <div className="text-xs text-outline mb-2 lg:mb-1 flex items-center gap-1 font-body-sm">
               <span className="material-symbols-outlined text-[14px]">calendar_today</span>
-              05 Oktober 2024
+              05 Okt 2024
             </div>
             <h3 className="font-headline-md text-on-surface text-base lg:text-sm mb-2 lg:mb-1 group-hover:text-primary transition-colors leading-tight">
-              Libur Semester
+              Pembukaan Pendaftaran Siswa Baru (PPDB)
             </h3>
-            <p className="font-body-sm text-body-sm text-on-surface-variant mb-4 lg:mb-2 flex-grow line-clamp-2 text-sm lg:text-xs">
-              Pemberitahuan jadwal libur akhir semester ganjil bagi seluruh siswa.
+            <p className="font-body-sm text-on-surface-variant mb-4 lg:mb-2 flex-grow line-clamp-2 text-sm lg:text-xs">
+              SDIT Imam Syafi'i resmi membuka pendaftaran peserta didik baru.
             </p>
             <span className="text-primary font-label-bold text-[12px] mt-auto inline-flex items-center gap-1">
               Baca Selengkapnya <span className="material-symbols-outlined text-[14px]">chevron_right</span>
@@ -123,6 +126,7 @@ export default function Berita() {
           </div>
         </Link>
       </div>
+
       <Link
         href="/berita"
         className="md:hidden w-full mt-6 flex justify-center items-center gap-2 text-primary border border-primary font-label-bold text-label-bold px-4 py-3 rounded-lg transition-colors text-center"
@@ -132,4 +136,3 @@ export default function Berita() {
     </div>
   );
 }
-

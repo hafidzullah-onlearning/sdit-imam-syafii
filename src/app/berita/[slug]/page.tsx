@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 import newsPpdb from "@/assets/news-ppdb.jpg";
 import newsMunaqosyah from "@/assets/news-munaqosyah.png";
 import newsHoliday from "@/assets/news-holiday.jpg";
+import newsMabit from "@/assets/news-mabit.jpg";
+import newsScience from "@/assets/news-science.jpg";
 
 const articlesData: Record<
   string,
@@ -19,19 +21,17 @@ const articlesData: Record<
     content: string[];
   }
 > = {
-  "jadwal-pendaftaran-ppdb-gelombang-1": {
-    title: "Jadwal Pendaftaran PPDB Gelombang 1 Tahun Ajaran 2024/2025",
-    date: "15 Oktober 2024",
-    category: "Pengumuman",
-    author: "Panitia PPDB SDIT Imam Syafi'i",
-    image: newsPpdb,
+  "mabit-qiyamul-lail-kelas-6": {
+    title: "Mabit & Qiyamul Lail Bersama Siswa Kelas 6 SDIT Imam Syafi'i",
+    date: "12 Oktober 2024",
+    category: "Kegiatan",
+    author: "Tim Kesiswaan & Al-Qur'an",
+    image: newsMabit,
     content: [
       "Assalamu'alaikum Warahmatullahi Wabarakatuh.",
-      "SDIT Imam Syafi'i Sudiang Makassar dengan bangga mengumumkan pembukaan Penerimaan Peserta Didik Baru (PPDB) Gelombang 1 untuk Tahun Ajaran 2024/2025. Pendaftaran ini diperuntukkan bagi calon murid kelas 1 serta transfer murid pindahan.",
-      "Sebagai institusi pendidikan yang berkomitmen membentuk generasi Qur'ani yang berakhlak mulia dan unggul secara akademik, SDIT Imam Syafi'i menyediakan kuota terbatas demi menjaga rasio ideal antara ustadz pendamping dan santri.",
-      "Persyaratan Pendaftaran:",
-      "1. Mengisi Formulir Pendaftaran (Online via WhatsApp Panitia / Datang Langsung).\n2. Membayar Biaya Pendaftaran.\n3. Melampirkan Fotokopi Akta Kelahiran & Kartu Keluarga.\n4. Usia minimal calon siswa 6 tahun pada bulan Juli 2024.",
-      "Bagi Bapak/Ibu wali murid yang ingin berkonsultasi mengenai alur pendaftaran, rincian biaya, atau jadwal tes observasi, silakan menghubungi Panitia PPDB melalui tombol kontak yang tersedia.",
+      "SDIT Imam Syafi'i sukses menyelenggarakan kegiatan Malam Bina Iman dan Taqwa (Mabit) serta Qiyamul Lail khusus bagi seluruh siswa-siswi kelas 6. Kegiatan ini bertujuan untuk membekali mental dan spiritual para santri menjelang ujian kelulusan.",
+      "Selama Mabit, siswa diajak mengulas kembali hafalan Al-Qur'an (muraja'ah), mendengarkan ceramah motivasi Islami, sholat beregu, serta sholat tahajud berjamaah di sepertiga malam terakhir.",
+      "Kegiatan diakhiri dengan sholat subuh berjamaah, doa bersama, dan sarapan sehat bersama ustadz pendamping. Semoga kegiatan ini menanamkan kebiasaan ibadah mandiri yang kuat bagi ananda di rumah.",
     ],
   },
   "agenda-munaqosyah-tahfidz": {
@@ -42,24 +42,64 @@ const articlesData: Record<
     image: newsMunaqosyah,
     content: [
       "Assalamu'alaikum Warahmatullahi Wabarakatuh.",
-      "Dalam rangka menguji kelancaran dan ketepatan tajwid hafalan Al-Qur'an santri, SDIT Imam Syafi'i akan menggelar Ujian Munaqosyah Tahfidz Terbuka untuk seluruh tingkat kelas 1 hingga 6.",
+      "Dalam rangka menguji kelancaran dan ketepatan tajwid hafalan Al-Qur'an santri, SDIT Imam Syafi'i menggelar Ujian Munaqosyah Tahfidz Terbuka untuk seluruh tingkat kelas 1 hingga 6.",
       "Ujian Munaqosyah ini merupakan agenda rutin yang wajib diikuti oleh santri yang telah menyelesaikan target hafalan minimal 1 Juz (Juz 30, 29, 28, atau seterusnya).",
-      "Format ujian diselenggarakan secara langsung di hadapan Tim Penguji/Penguji Eksternal serta dapat disaksikan oleh orang tua/wali santri secara khidmat.",
+      "Format ujian diselenggarakan secara langsung di hadapan Tim Penguji/Penguji Eksternal serta disaksikan oleh orang tua/wali santri secara khidmat.",
       "Semoga Allah memberikan kelancaran dan keistiqomahan kepada ananda dalam menjaga kalam-Nya.",
     ],
   },
-  "libur-semester-ganjil": {
-    title: "Pemberitahuan Jadwal Libur Akhir Semester Ganjil",
+  "jadwal-pendaftaran-ppdb-gelombang-1": {
+    title: "Pembukaan Pendaftaran Peserta Didik Baru (PPDB) TA 2025/2026",
     date: "05 Oktober 2024",
-    category: "Informasi",
-    author: "Humas Sekolah",
+    category: "Pengumuman",
+    author: "Panitia PPDB SDIT Imam Syafi'i",
+    image: newsPpdb,
+    content: [
+      "Assalamu'alaikum Warahmatullahi Wabarakatuh.",
+      "SDIT Imam Syafi'i Sudiang Makassar dengan bangga mengumumkan pembukaan Penerimaan Peserta Didik Baru (PPDB) Gelombang 1 untuk Tahun Ajaran 2025/2026. Pendaftaran ini diperuntukkan bagi calon murid kelas 1 serta transfer murid pindahan.",
+      "Sebagai institusi pendidikan yang berkomitmen membentuk generasi Qur'ani yang berakhlak mulia dan unggul secara akademik, SDIT Imam Syafi'i menyediakan kuota terbatas demi menjaga rasio ideal antara ustadz pendamping dan santri.",
+      "Persyaratan Pendaftaran:",
+      "1. Mengisi Formulir Pendaftaran (Online via WhatsApp Panitia / Datang Langsung).\n2. Membayar Biaya Pendaftaran.\n3. Melampirkan Fotokopi Akta Kelahiran & Kartu Keluarga.\n4. Usia minimal calon siswa 6 tahun pada bulan Juli 2025.",
+      "Bagi Bapak/Ibu wali murid yang ingin berkonsultasi mengenai alur pendaftaran, rincian biaya, atau jadwal tes observasi, silakan menghubungi Panitia PPDB melalui tombol kontak yang tersedia.",
+    ],
+  },
+  "science-day-eksplorasi-kreativitas": {
+    title: "Science Day: Eksplorasi Sains dan Teknologi Berbasis Al-Qur'an",
+    date: "28 September 2024",
+    category: "Kegiatan",
+    author: "Tim Kurikulum Sains",
+    image: newsScience,
+    content: [
+      "Assalamu'alaikum Warahmatullahi Wabarakatuh.",
+      "SDIT Imam Syafi'i sukses menggelar pameran 'Science Day' tahunan yang diikuti oleh perwakilan siswa dari kelas 1 hingga kelas 6 di gedung aula sekolah.",
+      "Berbagai proyek eksperimen menarik ditampilkan, mulai dari miniatur gunung berapi, pemurni air sederhana, hingga eksperimen fisika sederhana yang dihubungkan dengan ayat-ayat kauniyah Al-Qur'an.",
+      "Acara ini bertujuan menumbuhkan rasa ingin tahu, cara berpikir kritis, serta kesadaran akan kebesaran Allah melalui fenomena alam semesta.",
+    ],
+  },
+  "prestasi-gemilang-olimpiade-matematika": {
+    title: "Santri SDIT Imam Syafi'i Raih Medali Emas Olimpiade Matematika",
+    date: "20 September 2024",
+    category: "Akademik",
+    author: "Humas & Prestasi Sekolah",
+    image: newsMunaqosyah,
+    content: [
+      "Assalamu'alaikum Warahmatullahi Wabarakatuh.",
+      "Alhamdulillah tsumma alhamdulillah, berita membanggakan datang dari kontingen sains SDIT Imam Syafi'i yang berhasil menyabet Medali Emas dalam Kompetisi Sains & Matematika tingkat Provinsi.",
+      "Prestasi ini diraih berkat kedisiplinan belajar ananda dan bimbingan intensif dari para ustadz pembina olimpiade sekolah.",
+      "Manajemen sekolah mengucapkan jazakumullahu khairan kepada para guru, orang tua, dan seluruh pihak yang memberikan dukungan penuh bagi pencapaian gemilang ini.",
+    ],
+  },
+  "libur-semester-ganjil": {
+    title: "Peresmian Pojok Baca Tematik di Setiap Lantai Sekolah",
+    date: "15 September 2024",
+    category: "Pengumuman",
+    author: "Tim Literasi Sekolah",
     image: newsHoliday,
     content: [
       "Assalamu'alaikum Warahmatullahi Wabarakatuh.",
-      "Diberitahukan kepada seluruh Orang Tua / Wali Santri SDIT Imam Syafi'i bahwasanya kegiatan Pembelajaran Semester Ganjil telah selesai dilaksanakan dengan lancar.",
-      "Jadwal Libur Akhir Semester ditetapkan mulai tanggal 20 Desember 2024 hingga 5 Januari 2025. Kegiatan Belajar Mengajar (KBM) Semester Genap akan kembali aktif pada hari Senin, 6 Januari 2025.",
-      "Himbauan Liburan:",
-      "1. Orang tua diharapkan tetap memantau mutaba'ah harian sholat 5 waktu & muraja'ah hafalan Al-Qur'an ananda di rumah.\n2. Mengisi buku mutaba'ah liburan yang telah dibagikan oleh ustadz kelas.",
+      "Guna meningkatkan budaya minat baca (literasi) bagi santri, SDIT Imam Syafi'i kini meresmikan area 'Pojok Baca' tematik di setiap lorong lantai 1 hingga lantai 3 gedung sekolah.",
+      "Pojok baca dilengkapi dengan karpet empuk, rak buku ramah anak, serta ribuan koleksi buku cerita Islami, ensiklopedia anak, dan majalah sains.",
+      "Diharapkan santri dapat memanfaatkan waktu istirahat dengan membaca buku yang mendidik dan menambah wawasan keislaman.",
     ],
   },
 };
@@ -92,7 +132,7 @@ export default async function DetailBeritaPage({
 
   if (!article) {
     return (
-      <div className="bg-surface font-body-md text-on-surface min-h-screen flex flex-col pt-16">
+      <div className="bg-background font-body-md text-on-surface min-h-screen flex flex-col pt-16">
         <Navbar />
         <main className="flex-grow flex items-center justify-center py-20">
           <div className="text-center">
@@ -105,7 +145,7 @@ export default async function DetailBeritaPage({
             </p>
             <Link
               href="/berita"
-              className="bg-primary text-on-primary font-bold text-xs px-6 py-3 rounded-xl shadow inline-flex items-center gap-2"
+              className="bg-primary text-on-primary font-bold text-xs px-6 py-3 rounded-full shadow inline-flex items-center gap-2"
             >
               <span className="material-symbols-outlined text-[16px]">arrow_back</span>
               Kembali ke Berita
@@ -117,8 +157,21 @@ export default async function DetailBeritaPage({
     );
   }
 
+  const getBadgeStyle = (category: string) => {
+    switch (category) {
+      case "Kegiatan":
+        return "bg-primary/10 text-primary border border-primary/20";
+      case "Akademik":
+        return "bg-secondary-container text-on-secondary-container";
+      case "Pengumuman":
+        return "bg-error-container text-on-error-container";
+      default:
+        return "bg-surface-container-high text-on-surface";
+    }
+  };
+
   return (
-    <div className="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col pt-16">
+    <div className="bg-background font-body-md text-on-surface antialiased min-h-screen flex flex-col pt-16">
       <Navbar />
 
       <main className="flex-grow py-12">
@@ -140,7 +193,11 @@ export default async function DetailBeritaPage({
 
           {/* Article Header */}
           <div className="mb-8">
-            <span className="inline-block bg-primary text-on-primary font-bold text-xs px-3 py-1 rounded-full mb-3">
+            <span
+              className={`inline-block font-label-bold text-xs px-3 py-1 rounded-full mb-3 ${getBadgeStyle(
+                article.category
+              )}`}
+            >
               {article.category}
             </span>
             <h1 className="font-headline-xl text-headline-xl md:text-4xl text-on-surface mb-4 leading-tight">
