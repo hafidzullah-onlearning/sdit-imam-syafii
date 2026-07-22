@@ -23,7 +23,7 @@ export default function PpdbPage() {
 
       <main className="flex-grow">
         {/* 1. Hero Section */}
-        <section className="relative min-h-[520px] md:min-h-[600px] flex items-center overflow-hidden islamic-pattern py-12 md:py-16 bg-surface-container-low border-b border-surface-variant/30">
+        <section className="relative md:min-h-[calc(100vh-4rem)] flex items-center overflow-hidden islamic-pattern py-12 md:py-6 bg-surface-container-low border-b border-surface-variant/30">
           <div className="max-w-container-max mx-auto px-gutter grid md:grid-cols-2 gap-lg items-center relative z-10">
             <div>
               <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary-container/10 text-primary border border-primary/20 rounded-full font-label-bold text-xs mb-4">
