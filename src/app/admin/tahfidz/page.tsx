@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase/client";
+import { fetchStudentsFromDB, saveStudentToDB, deleteStudentFromDB } from "@/lib/supabase/services";
 
 interface StudentRecord {
   id?: string;
@@ -133,19 +134,34 @@ export default function AdminTahfidzPage() {
   const supabase = createClient();
 
   useEffect(() => {
-    // Load from localStorage or Supabase
-    const saved = localStorage.getItem("sdit_students");
-    if (saved) {
-      try {
-        setStudents(JSON.parse(saved));
-      } catch {}
+    async function loadData() {
+      const dbStudents = await fetchStudentsFromDB();
+      if (dbStudents && dbStudents.length > 0) {
+        setStudents(dbStudents);
+      } else {
+        const saved = localStorage.getItem("sdit_students");
+        if (saved) {
+          try {
+            setStudents(JSON.parse(saved));
+          } catch {}
+        }
+      }
     }
+    loadData();
   }, []);
 
-  const saveToStorageAndDB = (updatedList: StudentRecord[]) => {
+  const saveToStorageAndDB = (updatedList: StudentRecord[], studentToSave?: StudentRecord, nisnToDelete?: string) => {
     setStudents(updatedList);
     localStorage.setItem("sdit_students", JSON.stringify(updatedList));
+
+    if (studentToSave) {
+      saveStudentToDB(studentToSave);
+    }
+    if (nisnToDelete) {
+      deleteStudentFromDB(nisnToDelete);
+    }
   };
+
 
   const handleClassFilterChange = (c: string) => {
     setSelectedClass(c);
@@ -168,12 +184,15 @@ export default function AdminTahfidzPage() {
     e.preventDefault();
     if (!editingStudent) return;
 
+    const updatedRecord = {
+      ...editingStudent,
+      lastUpdate: new Date().toLocaleDateString("id-ID", { day: "2-digit", month: "short", year: "numeric" }),
+    };
+
     const updated = students.map((s) =>
-      s.no === editingStudent.no
-        ? { ...editingStudent, lastUpdate: new Date().toLocaleDateString("id-ID", { day: "2-digit", month: "short", year: "numeric" }) }
-        : s
+      s.no === editingStudent.no ? updatedRecord : s
     );
-    saveToStorageAndDB(updated);
+    saveToStorageAndDB(updated, updatedRecord);
     setIsEditModalOpen(false);
     setEditingStudent(null);
   };
@@ -194,15 +213,16 @@ export default function AdminTahfidzPage() {
     };
 
     const updated = [newRecord, ...students];
-    saveToStorageAndDB(updated);
+    saveToStorageAndDB(updated, newRecord);
     setIsAddModalOpen(false);
     setNewStudent({ class: "6 Al-Ikhlas", statusType: "success", status: "Lulus Munaqosyah" });
   };
 
   const handleDeleteStudent = (no: number) => {
+    const target = students.find((s) => s.no === no);
     if (confirm("Apakah Anda yakin ingin menghapus data santri ini?")) {
       const updated = students.filter((s) => s.no !== no);
-      saveToStorageAndDB(updated);
+      saveToStorageAndDB(updated, undefined, target?.nisn);
     }
   };
 

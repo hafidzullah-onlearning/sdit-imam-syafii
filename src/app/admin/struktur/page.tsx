@@ -2,14 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { IslamicAvatar } from "@/components/icons/IslamicAvatars";
+import { fetchStaffFromDB, saveStaffToDB, deleteStaffFromDB, StaffRecord } from "@/lib/supabase/services";
 
-interface StaffMember {
-  id: string;
-  name: string;
-  role: string;
-  gender: "male" | "female";
-  displayOrder: number;
-}
+type StaffMember = StaffRecord;
 
 const initialStaffMembers: StaffMember[] = [
   {
@@ -53,19 +48,33 @@ export default function AdminStrukturPage() {
   });
 
   useEffect(() => {
-    const saved = localStorage.getItem("sdit_staff");
-    if (saved) {
-      try {
-        setStaffList(JSON.parse(saved));
-      } catch {}
+    async function loadStaff() {
+      const dbStaff = await fetchStaffFromDB();
+      if (dbStaff && dbStaff.length > 0) {
+        setStaffList(dbStaff);
+      } else {
+        const saved = localStorage.getItem("sdit_staff");
+        if (saved) {
+          try {
+            setStaffList(JSON.parse(saved));
+          } catch {}
+        }
+      }
     }
+    loadStaff();
   }, []);
 
-  const saveToStorage = (updated: StaffMember[]) => {
-    // Sort by displayOrder
+  const saveToStorage = (updated: StaffMember[], staffToSave?: StaffMember, idToDelete?: string) => {
     const sorted = [...updated].sort((a, b) => a.displayOrder - b.displayOrder);
     setStaffList(sorted);
     localStorage.setItem("sdit_staff", JSON.stringify(sorted));
+
+    if (staffToSave) {
+      saveStaffToDB(staffToSave);
+    }
+    if (idToDelete) {
+      deleteStaffFromDB(idToDelete);
+    }
   };
 
   const handleOpenAdd = () => {
@@ -89,33 +98,33 @@ export default function AdminStrukturPage() {
     e.preventDefault();
     if (!formData.name || !formData.role) return;
 
+    let target: StaffMember;
     if (editingStaff) {
-      const updated = staffList.map((s) =>
-        s.id === editingStaff.id
-          ? ({ ...s, ...formData } as StaffMember)
-          : s
-      );
-      saveToStorage(updated);
+      target = { ...editingStaff, ...formData } as StaffMember;
+      const updated = staffList.map((s) => (s.id === editingStaff.id ? target : s));
+      saveToStorage(updated, target);
     } else {
-      const newStaff: StaffMember = {
+      target = {
         id: String(Date.now()),
         name: formData.name,
         role: formData.role,
         gender: (formData.gender as any) || "male",
         displayOrder: Number(formData.displayOrder) || staffList.length + 1,
       };
-      saveToStorage([...staffList, newStaff]);
+      saveToStorage([...staffList, target], target);
     }
 
     setIsModalOpen(false);
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = (id?: string) => {
+    if (!id) return;
     if (confirm("Apakah Anda yakin ingin menghapus pengelola ini dari struktur organisasi?")) {
       const updated = staffList.filter((s) => s.id !== id);
-      saveToStorage(updated);
+      saveToStorage(updated, undefined, id);
     }
   };
+
 
   return (
     <div className="space-y-6">

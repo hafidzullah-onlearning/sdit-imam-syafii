@@ -2,14 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { IslamicAvatar } from "@/components/icons/IslamicAvatars";
+import { createClient } from "@/lib/supabase/client";
+import { fetchStaffFromDB, StaffRecord } from "@/lib/supabase/services";
 
-interface StaffMember {
-  id: string;
-  name: string;
-  role: string;
-  gender: "male" | "female";
-  displayOrder: number;
-}
+type StaffMember = StaffRecord;
 
 const defaultStaffMembers: StaffMember[] = [
   {
@@ -46,16 +42,56 @@ export default function StrukturOrganisasi() {
   const [staffMembers, setStaffMembers] = useState<StaffMember[]>(defaultStaffMembers);
 
   useEffect(() => {
-    const saved = localStorage.getItem("sdit_staff");
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setStaffMembers(parsed.sort((a, b) => a.displayOrder - b.displayOrder));
+    let channel: any;
+
+    async function loadStaff() {
+      // 1. Try DB fetch first
+      const dbStaff = await fetchStaffFromDB();
+      if (dbStaff && dbStaff.length > 0) {
+        setStaffMembers(dbStaff);
+      } else {
+        const saved = localStorage.getItem("sdit_staff");
+        if (saved) {
+          try {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              setStaffMembers(parsed.sort((a: any, b: any) => a.displayOrder - b.displayOrder));
+              return;
+            }
+          } catch {}
         }
+        setStaffMembers(defaultStaffMembers);
+      }
+
+      // 2. Realtime listener
+      try {
+        const supabase = createClient();
+        channel = supabase
+          .channel("realtime_staff")
+          .on(
+            "postgres_changes",
+            { event: "*", schema: "public", table: "organization_staff" },
+            async () => {
+              const fresh = await fetchStaffFromDB();
+              if (fresh) setStaffMembers(fresh);
+            }
+          )
+          .subscribe();
       } catch {}
     }
+
+    loadStaff();
+
+    return () => {
+      if (channel) {
+        try {
+          const supabase = createClient();
+          supabase.removeChannel(channel);
+        } catch {}
+      }
+    };
   }, []);
+
 
   return (
     <section className="py-xl bg-surface border-b border-surface-variant/30">

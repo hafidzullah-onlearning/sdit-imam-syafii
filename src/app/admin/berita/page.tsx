@@ -2,19 +2,9 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { fetchNewsFromDB, saveNewsToDB, deleteNewsFromDB, NewsArticleRecord } from "@/lib/supabase/services";
 
-interface ArticleItem {
-  id?: string;
-  slug: string;
-  title: string;
-  date: string;
-  category: "Kegiatan" | "Akademik" | "Pengumuman";
-  author: string;
-  image: string;
-  summary: string;
-  content: string[];
-  status: "published" | "draft";
-}
+type ArticleItem = NewsArticleRecord;
 
 const initialArticles: ArticleItem[] = [
   {
@@ -27,7 +17,7 @@ const initialArticles: ArticleItem[] = [
     summary: "Membangun spiritualitas sejak dini melalui kegiatan Malam Bina Iman dan Taqwa (Mabit) yang diikuti oleh seluruh siswa akhir SDIT Imam Syafi'i.",
     content: [
       "Assalamu'alaikum Warahmatullahi Wabarakatuh.",
-      "SDIT Imam Syafi'i sukses menyelenggarakan kegiatan Malam Bina Iman dan Taqwa (Mabit) serta Qiyamul Lail khusus bagi seluruh siswa-siswi kelas 6. Kegiatan ini bertujuan untuk membekali mental dan spiritual para santri menjelang ujian kelulusan.",
+      "SDIT Imam Syafi'i sukses menyelenggarakan kegiatan Malam Bina Iman dan Taqwa (Mabit) serta Qiyamul Lail khusus bagi seluruh siswa-siswi kelas 6.",
     ],
     status: "published",
   },
@@ -38,39 +28,12 @@ const initialArticles: ArticleItem[] = [
     category: "Akademik",
     author: "Koordinator Tahfidz",
     image: "/news-munaqosyah.png",
-    summary: "Pelaksanaan evaluasi hafalan Al-Qur'an berjalan dengan khidmat. Orang tua dapat memantau progres hafalan ananda disaksikan oleh tim penguji.",
+    summary: "Pelaksanaan evaluasi hafalan Al-Qur'an berjalan dengan khidmat.",
     content: [
       "Assalamu'alaikum Warahmatullahi Wabarakatuh.",
-      "Dalam rangka menguji kelancaran dan ketepatan tajwid hafalan Al-Qur'an santri, SDIT Imam Syafi'i menggelar Ujian Munaqosyah Tahfidz Terbuka untuk seluruh tingkat kelas 1 hingga 6.",
+      "Dalam rangka menguji kelancaran dan ketepatan tajwid hafalan Al-Qur'an santri.",
     ],
     status: "published",
-  },
-  {
-    slug: "jadwal-pendaftaran-ppdb-gelombang-1",
-    title: "Pembukaan Pendaftaran Peserta Didik Baru (PPDB) TA 2025/2026",
-    date: "05 Okt 2024",
-    category: "Pengumuman",
-    author: "Panitia PPDB",
-    image: "/news-ppdb.jpg",
-    summary: "SDIT Imam Syafi'i resmi membuka pendaftaran peserta didik baru (PPDB) untuk tahun ajaran 2025/2026. Kuota terbatas bagi calon santri baru.",
-    content: [
-      "Assalamu'alaikum Warahmatullahi Wabarakatuh.",
-      "SDIT Imam Syafi'i Sudiang Makassar dengan bangga mengumumkan pembukaan Penerimaan Peserta Didik Baru (PPDB) Gelombang 1 untuk Tahun Ajaran 2025/2026.",
-    ],
-    status: "published",
-  },
-  {
-    slug: "draft-kegiatan-ekstrakurikuler-panahan",
-    title: "Pembukaan Ekstrakurikuler Panahan & Berkuda Santri",
-    date: "15 Okt 2024",
-    category: "Kegiatan",
-    author: "Tim Olahraga Sunnah",
-    image: "/news-science.jpg",
-    summary: "Draft rencana program ekstrakurikuler sunnah panahan dan olahraga ketangkasan bagi santri kelas 4-6.",
-    content: [
-      "Persiapan sarana dan prasarana lapangan panahan sekolah sedang dalam tahap finalisasi oleh pihak pengelola.",
-    ],
-    status: "draft",
   },
 ];
 
@@ -88,18 +51,34 @@ export default function AdminBeritaPage() {
   });
 
   useEffect(() => {
-    const saved = localStorage.getItem("sdit_news");
-    if (saved) {
-      try {
-        setArticles(JSON.parse(saved));
-      } catch {}
+    async function loadNews() {
+      const dbArticles = await fetchNewsFromDB(false);
+      if (dbArticles && dbArticles.length > 0) {
+        setArticles(dbArticles);
+      } else {
+        const saved = localStorage.getItem("sdit_news");
+        if (saved) {
+          try {
+            setArticles(JSON.parse(saved));
+          } catch {}
+        }
+      }
     }
+    loadNews();
   }, []);
 
-  const saveToStorage = (updated: ArticleItem[]) => {
+  const saveToStorage = (updated: ArticleItem[], articleToSave?: ArticleItem, slugToDelete?: string) => {
     setArticles(updated);
     localStorage.setItem("sdit_news", JSON.stringify(updated));
+
+    if (articleToSave) {
+      saveNewsToDB(articleToSave);
+    }
+    if (slugToDelete) {
+      deleteNewsFromDB(slugToDelete);
+    }
   };
+
 
   const filteredArticles = articles.filter((a) => {
     if (filterStatus === "all") return true;
@@ -146,51 +125,53 @@ export default function AdminBeritaPage() {
         : formData.content || [formData.summary];
 
     if (editingArticle) {
+      const updatedArticle: ArticleItem = {
+        ...editingArticle,
+        ...formData,
+        slug,
+        date: dateStr,
+        content: contentArray,
+      } as ArticleItem;
+
       const updated = articles.map((a) =>
-        a.slug === editingArticle.slug
-          ? ({
-              ...a,
-              ...formData,
-              slug,
-              date: dateStr,
-              content: contentArray,
-            } as ArticleItem)
-          : a
+        a.slug === editingArticle.slug ? updatedArticle : a
       );
-      saveToStorage(updated);
+      saveToStorage(updated, updatedArticle);
     } else {
       const newArticle: ArticleItem = {
         slug,
-        title: formData.title,
+        title: formData.title || "",
         category: (formData.category as any) || "Kegiatan",
         author: formData.author || "Humas SDIT Imam Syafi'i",
         date: dateStr,
         image: formData.image || "/news-mabit.jpg",
-        summary: formData.summary,
+        summary: formData.summary || "",
         content: contentArray,
         status: (formData.status as any) || "published",
       };
-      saveToStorage([newArticle, ...articles]);
+      saveToStorage([newArticle, ...articles], newArticle);
     }
 
     setIsModalOpen(false);
   };
 
   const handleToggleStatus = (slug: string) => {
+    let target: ArticleItem | undefined;
     const updated = articles.map((a) => {
       if (a.slug === slug) {
         const nextStatus: "published" | "draft" = a.status === "published" ? "draft" : "published";
-        return { ...a, status: nextStatus };
+        target = { ...a, status: nextStatus };
+        return target;
       }
       return a;
     });
-    saveToStorage(updated);
+    saveToStorage(updated, target);
   };
 
   const handleDelete = (slug: string) => {
     if (confirm("Apakah Anda yakin ingin menghapus artikel berita ini?")) {
       const updated = articles.filter((a) => a.slug !== slug);
-      saveToStorage(updated);
+      saveToStorage(updated, undefined, slug);
     }
   };
 

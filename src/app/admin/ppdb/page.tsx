@@ -1,20 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { fetchPpdbBatchFromDB, savePpdbBatchToDB, PpdbBatchRecord } from "@/lib/supabase/services";
 
-interface PpdbBatchConfig {
-  title: string;
-  status: "active" | "closed" | "draft";
-  startDate: string;
-  endDate: string;
-  observationDate: string;
-  announcementDate: string;
-  remainingQuota: number;
-  totalQuota: number;
-  regFee: string;
-  devFee: string;
-  sppFee: string;
-}
+type PpdbBatchConfig = PpdbBatchRecord;
 
 interface ApplicantRecord {
   id: string;
@@ -50,24 +39,6 @@ const initialApplicants: ApplicantRecord[] = [
     status: "Lulus Observasi",
     date: "04 Okt 2024",
   },
-  {
-    id: "APP-002",
-    studentName: "Naila Husna",
-    parentName: "Hendra Wijaya",
-    phone: "081398765432",
-    classGrade: "Kelas 1 SD",
-    status: "Pending",
-    date: "05 Okt 2024",
-  },
-  {
-    id: "APP-003",
-    studentName: "Rayhan Ahmad",
-    parentName: "Syamsul Rizal",
-    phone: "085211223344",
-    classGrade: "Kelas 1 SD",
-    status: "Diterima",
-    date: "06 Okt 2024",
-  },
 ];
 
 export default function AdminPpdbPage() {
@@ -81,24 +52,33 @@ export default function AdminPpdbPage() {
   });
 
   useEffect(() => {
-    const savedConfig = localStorage.getItem("sdit_ppdb_config");
-    if (savedConfig) {
-      try {
-        setConfig(JSON.parse(savedConfig));
-      } catch {}
-    }
+    async function loadPpdbData() {
+      const dbBatch = await fetchPpdbBatchFromDB();
+      if (dbBatch) {
+        setConfig(dbBatch);
+      } else {
+        const savedConfig = localStorage.getItem("sdit_ppdb_config");
+        if (savedConfig) {
+          try {
+            setConfig(JSON.parse(savedConfig));
+          } catch {}
+        }
+      }
 
-    const savedApplicants = localStorage.getItem("sdit_ppdb_applicants");
-    if (savedApplicants) {
-      try {
-        setApplicants(JSON.parse(savedApplicants));
-      } catch {}
+      const savedApplicants = localStorage.getItem("sdit_ppdb_applicants");
+      if (savedApplicants) {
+        try {
+          setApplicants(JSON.parse(savedApplicants));
+        } catch {}
+      }
     }
+    loadPpdbData();
   }, []);
 
   const saveConfig = (newCfg: PpdbBatchConfig) => {
     setConfig(newCfg);
     localStorage.setItem("sdit_ppdb_config", JSON.stringify(newCfg));
+    savePpdbBatchToDB(newCfg);
     setIsSavedAlert(true);
     setTimeout(() => setIsSavedAlert(false), 3000);
   };

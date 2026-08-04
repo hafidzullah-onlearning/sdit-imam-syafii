@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
+import { createClient } from "@/lib/supabase/client";
+import { fetchStudentsFromDB } from "@/lib/supabase/services";
 
 interface StudentRecord {
   no: number;
@@ -124,20 +126,59 @@ export default function TahfidzTable() {
   ];
 
   useEffect(() => {
-    const saved = localStorage.getItem("sdit_students");
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          setStudentList(parsed);
-          return;
+    let channel: any;
+
+    async function loadData() {
+      // 1. Try fetching from Supabase DB first
+      const dbStudents = await fetchStudentsFromDB();
+      if (dbStudents && dbStudents.length > 0) {
+        setStudentList(dbStudents);
+      } else {
+        // Fallback to localStorage or default
+        const saved = localStorage.getItem("sdit_students");
+        if (saved) {
+          try {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              setStudentList(parsed);
+              return;
+            }
+          } catch {}
         }
+        setStudentList(defaultStudents);
+      }
+
+      // 2. Subscribe to Supabase Realtime changes
+      try {
+        const supabase = createClient();
+        channel = supabase
+          .channel("realtime_tahfidz_students")
+          .on(
+            "postgres_changes",
+            { event: "*", schema: "public", table: "students" },
+            async () => {
+              const fresh = await fetchStudentsFromDB();
+              if (fresh) setStudentList(fresh);
+            }
+          )
+          .subscribe();
       } catch {}
     }
-    setStudentList(defaultStudents);
+
+    loadData();
+
+    return () => {
+      if (channel) {
+        try {
+          const supabase = createClient();
+          supabase.removeChannel(channel);
+        } catch {}
+      }
+    };
   }, []);
 
   const mockStudents = studentList.length > 0 ? studentList : defaultStudents;
+
 
   // Real-time search filter by Name or NISN
   const filteredStudents = useMemo(() => {
