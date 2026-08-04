@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 
 interface StudentRecord {
   no: number;
@@ -18,7 +18,9 @@ export default function TahfidzTable() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
-  const mockStudents: StudentRecord[] = [
+  const [studentList, setStudentList] = useState<StudentRecord[]>([]);
+
+  const defaultStudents: StudentRecord[] = [
     {
       no: 1,
       name: "Abdullah Ahmad Fawwaz",
@@ -120,6 +122,22 @@ export default function TahfidzTable() {
       lastUpdate: "02 Okt 2024",
     },
   ];
+
+  useEffect(() => {
+    const saved = localStorage.getItem("sdit_students");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setStudentList(parsed);
+          return;
+        }
+      } catch {}
+    }
+    setStudentList(defaultStudents);
+  }, []);
+
+  const mockStudents = studentList.length > 0 ? studentList : defaultStudents;
 
   // Real-time search filter by Name or NISN
   const filteredStudents = useMemo(() => {

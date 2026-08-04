@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
@@ -12,7 +12,7 @@ import newsHoliday from "@/assets/news-holiday.jpg";
 import newsMabit from "@/assets/news-mabit.jpg";
 import newsScience from "@/assets/news-science.jpg";
 
-const articles = [
+const defaultArticles = [
   {
     slug: "mabit-qiyamul-lail-kelas-6",
     title: "Mabit & Qiyamul Lail Bersama Kelas 6",
@@ -21,6 +21,7 @@ const articles = [
     image: newsMabit,
     summary:
       "Membangun spiritualitas sejak dini melalui kegiatan Malam Bina Iman dan Taqwa (Mabit) yang diikuti oleh seluruh siswa akhir SDIT Imam Syafi'i.",
+    status: "published",
   },
   {
     slug: "agenda-munaqosyah-tahfidz",
@@ -30,6 +31,7 @@ const articles = [
     image: newsMunaqosyah,
     summary:
       "Pelaksanaan evaluasi hafalan Al-Qur'an berjalan dengan khidmat. Orang tua dapat memantau progres hafalan ananda disaksikan oleh tim penguji.",
+    status: "published",
   },
   {
     slug: "jadwal-pendaftaran-ppdb-gelombang-1",
@@ -39,6 +41,7 @@ const articles = [
     image: newsPpdb,
     summary:
       "SDIT Imam Syafi'i resmi membuka pendaftaran peserta didik baru (PPDB) untuk tahun ajaran 2025/2026. Kuota terbatas bagi calon santri baru.",
+    status: "published",
   },
   {
     slug: "science-day-eksplorasi-kreativitas",
@@ -48,6 +51,7 @@ const articles = [
     image: newsScience,
     summary:
       "Siswa-siswi menunjukkan bakat inovatif mereka dalam pameran sains tahunan yang mengusung tema 'Teknologi dan Al-Qur'an' di aula sekolah.",
+    status: "published",
   },
   {
     slug: "prestasi-gemilang-olimpiade-matematika",
@@ -57,6 +61,7 @@ const articles = [
     image: newsMunaqosyah,
     summary:
       "Alhamdulillah, kontingen SDIT Imam Syafi'i berhasil membawa pulang medali emas dalam kompetisi sains & matematika tingkat provinsi.",
+    status: "published",
   },
   {
     slug: "libur-semester-ganjil",
@@ -66,6 +71,7 @@ const articles = [
     image: newsHoliday,
     summary:
       "Fasilitas perpustakaan kini semakin lengkap dengan hadirnya area baca tematik yang nyaman bagi para siswa di setiap lantai gedung.",
+    status: "published",
   },
 ];
 
@@ -73,7 +79,24 @@ export default function BeritaPage() {
   const [selectedCategory, setSelectedCategory] = useState("Semua");
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [articlesList, setArticlesList] = useState<any[]>([]);
+  const itemsPerPage = 6;
 
+  useEffect(() => {
+    const saved = localStorage.getItem("sdit_news");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setArticlesList(parsed.filter((a) => a.status === "published"));
+          return;
+        }
+      } catch {}
+    }
+    setArticlesList(defaultArticles);
+  }, []);
+
+  const articles = articlesList.length > 0 ? articlesList : defaultArticles;
   const categories = ["Semua", "Pengumuman", "Akademik", "Kegiatan"];
 
   const filteredArticles = articles.filter((item) => {
@@ -85,6 +108,13 @@ export default function BeritaPage() {
       item.summary.toLowerCase().includes(query);
     return matchesCategory && matchesSearch;
   });
+
+  const totalPages = Math.ceil(filteredArticles.length / itemsPerPage) || 1;
+  const paginatedArticles = filteredArticles.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
 
   const getBadgeStyle = (category: string) => {
     switch (category) {
@@ -161,9 +191,9 @@ export default function BeritaPage() {
 
         {/* Articles Grid */}
         <section>
-          {filteredArticles.length > 0 ? (
+          {paginatedArticles.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredArticles.map((article, idx) => (
+              {paginatedArticles.map((article, idx) => (
                 <article
                   key={article.slug}
                   className={`bg-surface-container-lowest rounded-2xl overflow-hidden oceanic-shadow border border-surface-variant/30 flex flex-col group hover:-translate-y-1 hover:shadow-xl transition-all duration-300 ${
@@ -236,7 +266,7 @@ export default function BeritaPage() {
           )}
         </section>
 
-        {/* Pagination UI */}
+        {/* Dynamic Pagination UI */}
         {filteredArticles.length > 0 && (
           <nav className="mt-16 flex justify-center items-center gap-2" aria-label="Navigasi Halaman Berita">
             <button
@@ -247,30 +277,23 @@ export default function BeritaPage() {
             >
               <span className="material-symbols-outlined text-[20px]">chevron_left</span>
             </button>
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((pg) => (
+              <button
+                key={pg}
+                onClick={() => setCurrentPage(pg)}
+                className={`w-10 h-10 rounded-full font-label-bold text-xs cursor-pointer transition-colors ${
+                  currentPage === pg
+                    ? "bg-primary text-on-primary font-bold shadow"
+                    : "border border-outline-variant text-on-surface hover:bg-surface-container"
+                }`}
+              >
+                {pg}
+              </button>
+            ))}
             <button
-              onClick={() => setCurrentPage(1)}
-              className={`w-10 h-10 rounded-full font-label-bold text-xs cursor-pointer transition-colors ${
-                currentPage === 1
-                  ? "bg-primary text-on-primary"
-                  : "border border-outline-variant text-on-surface hover:bg-surface-container"
-              }`}
-            >
-              1
-            </button>
-            <button
-              onClick={() => setCurrentPage(2)}
-              className={`w-10 h-10 rounded-full font-label-bold text-xs cursor-pointer transition-colors ${
-                currentPage === 2
-                  ? "bg-primary text-on-primary"
-                  : "border border-outline-variant text-on-surface hover:bg-surface-container"
-              }`}
-            >
-              2
-            </button>
-            <span className="px-2 text-outline text-xs">...</span>
-            <button
-              onClick={() => setCurrentPage(2)}
-              className="w-10 h-10 rounded-full flex items-center justify-center border border-outline-variant text-outline hover:bg-surface-container transition-colors cursor-pointer"
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              className="w-10 h-10 rounded-full flex items-center justify-center border border-outline-variant text-outline hover:bg-surface-container transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
               aria-label="Halaman Selanjutnya"
             >
               <span className="material-symbols-outlined text-[20px]">chevron_right</span>

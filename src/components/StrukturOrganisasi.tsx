@@ -1,32 +1,61 @@
-import Image from "next/image";
-import staffKepalaSekolah from "@/assets/staff-kepala-sekolah.jpg";
-import staffWakaKurikulum from "@/assets/staff-waka-kurikulum.jpg";
-import staffWakaKesiswaan from "@/assets/staff-waka-kesiswaan.jpg";
-import staffBendahara from "@/assets/staff-bendahara.jpg";
+"use client";
+
+import { useEffect, useState } from "react";
+import { IslamicAvatar } from "@/components/icons/IslamicAvatars";
+
+interface StaffMember {
+  id: string;
+  name: string;
+  role: string;
+  gender: "male" | "female";
+  displayOrder: number;
+}
+
+const defaultStaffMembers: StaffMember[] = [
+  {
+    id: "1",
+    name: "Ust. Ahmad Ridwan, M.Pd",
+    role: "Kepala Sekolah",
+    gender: "male",
+    displayOrder: 1,
+  },
+  {
+    id: "2",
+    name: "Ustzh. Sarah Amina",
+    role: "Waka Kurikulum",
+    gender: "female",
+    displayOrder: 2,
+  },
+  {
+    id: "3",
+    name: "Ust. Fauzan Hanif",
+    role: "Waka Kesiswaan",
+    gender: "male",
+    displayOrder: 3,
+  },
+  {
+    id: "4",
+    name: "Ustzh. Fatimah Zahra",
+    role: "Bendahara Sekolah",
+    gender: "female",
+    displayOrder: 4,
+  },
+];
 
 export default function StrukturOrganisasi() {
-  const staffMembers = [
-    {
-      name: "Ust. Ahmad Ridwan, M.Pd",
-      role: "Kepala Sekolah",
-      image: staffKepalaSekolah,
-    },
-    {
-      name: "Ustzh. Sarah Amina",
-      role: "Waka Kurikulum",
-      image: staffWakaKurikulum,
-    },
-    {
-      name: "Ust. Fauzan Hanif",
-      role: "Waka Kesiswaan",
-      image: staffWakaKesiswaan,
-    },
-    {
-      name: "Ustzh. Fatimah Zahra",
-      role: "Bendahara Sekolah",
-      image: staffBendahara,
-    },
-  ];
+  const [staffMembers, setStaffMembers] = useState<StaffMember[]>(defaultStaffMembers);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("sdit_staff");
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setStaffMembers(parsed.sort((a, b) => a.displayOrder - b.displayOrder));
+        }
+      } catch {}
+    }
+  }, []);
 
   return (
     <section className="py-xl bg-surface border-b border-surface-variant/30">
@@ -46,17 +75,12 @@ export default function StrukturOrganisasi() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
-          {staffMembers.map((staff, idx) => (
-            <div key={idx} className="text-center group">
-              <div className="relative mb-md overflow-hidden rounded-2xl aspect-[3/4] oceanic-shadow border border-surface-variant/30">
-                <Image
-                  src={staff.image}
-                  alt={`Foto ${staff.name} - ${staff.role}`}
-                  fill
-                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                />
-                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+          {staffMembers.map((staff) => (
+            <div key={staff.id} className="text-center group">
+              <div className="relative mb-md overflow-hidden rounded-2xl aspect-[3/4] oceanic-shadow border border-surface-variant/30 bg-surface-container-lowest flex flex-col items-center justify-center p-4">
+                <div className="transform group-hover:scale-105 transition-transform duration-500">
+                  <IslamicAvatar gender={staff.gender} size={140} />
+                </div>
               </div>
               <h4 className="font-bold text-lg text-on-surface mb-1">{staff.name}</h4>
               <p className="text-primary font-bold text-xs uppercase tracking-wider">
@@ -69,3 +93,4 @@ export default function StrukturOrganisasi() {
     </section>
   );
 }
+
