@@ -35,20 +35,53 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
-  const isDemoAdmin = request.cookies.get("admin_demo_auth")?.value === "true";
   const pathname = request.nextUrl.pathname;
 
-  // Protect /admin routes except /admin/login
+  // 1. Protect /admin routes (except /admin/login)
   if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
-    if (!user && !isDemoAdmin) {
+    if (!user) {
       const redirectUrl = request.nextUrl.clone();
       redirectUrl.pathname = "/admin/login";
       return NextResponse.redirect(redirectUrl);
     }
+
+    // Special SuperAdmin check for demo credential fallback or DB user profile
+    const isSuperAdminEmail = user.email === "superadmin@sdit-imamsyafii.sch.id";
+
+    // Fetch user profile role from DB if available
+    let role = user.user_metadata?.role || (isSuperAdminEmail ? "superadmin" : "admin");
+
+    try {
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("role")
+        .eq("id", user.id)
+        .single();
+
+      if (profile?.role) {
+        role = profile.role;
+      }
+    } catch {}
+
+    // Route RBAC Checks
+    // /admin/users -> SuperAdmin only
+    if (pathname.startsWith("/admin/users") && role !== "superadmin") {
+      const redirectUrl = request.nextUrl.clone();
+      redirectUrl.pathname = "/admin/dashboard";
+      return NextResponse.redirect(redirectUrl);
+    }
+
+    // /admin/berita, /admin/ppdb, /admin/struktur -> superadmin & admin only
+    const adminOnlyRoutes = ["/admin/berita", "/admin/ppdb", "/admin/struktur"];
+    if (adminOnlyRoutes.some((route) => pathname.startsWith(route)) && role === "ustadz") {
+      const redirectUrl = request.nextUrl.clone();
+      redirectUrl.pathname = "/admin/dashboard";
+      return NextResponse.redirect(redirectUrl);
+    }
   }
 
-  // Redirect away from /admin/login if already authenticated
-  if (pathname === "/admin/login" && (user || isDemoAdmin)) {
+  // 2. Redirect away from /admin/login if already authenticated
+  if (pathname === "/admin/login" && user) {
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = "/admin/dashboard";
     return NextResponse.redirect(redirectUrl);

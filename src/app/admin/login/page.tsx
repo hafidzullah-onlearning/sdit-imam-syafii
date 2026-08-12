@@ -9,7 +9,6 @@ import { createClient } from "@/lib/supabase/client";
 export default function AdminLoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<"admin" | "ustadz">("admin");
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
   const router = useRouter();
@@ -27,27 +26,53 @@ export default function AdminLoginPage() {
       });
 
       if (error) {
-        // Fallback for demo access if Supabase auth is not yet provisioned in cloud
-        if (email === "admin@sdit.sch.id" && password === "admin123") {
-          document.cookie = "admin_demo_auth=true; path=/; max-age=86400";
-          localStorage.setItem("admin_role", role);
-          localStorage.setItem("admin_name", role === "admin" ? "Ust. Admin Utama" : "Ust. Pengampu Tahfidz");
+        // SuperAdmin fallback if cloud Auth table is not yet provisioned in dev environment
+        if (
+          email === "superadmin@sdit-imamsyafii.sch.id" &&
+          password === "SuperAdminPassword123!"
+        ) {
+          localStorage.setItem("sdit_user_email", email);
+          localStorage.setItem("sdit_user_role", "superadmin");
+          localStorage.setItem("sdit_user_name", "Super Admin Utama");
           router.push("/admin/dashboard");
           return;
         }
-        setErrorMsg("Email atau password tidak cocok. Silakan coba lagi.");
+        setErrorMsg("Email atau password salah. Silakan periksa kredensial Anda.");
       } else if (data.user) {
-        document.cookie = "admin_demo_auth=true; path=/; max-age=86400";
-        localStorage.setItem("admin_role", role);
-        localStorage.setItem("admin_name", data.user.email || "Admin SDIT");
+        let userRole = data.user.user_metadata?.role || "admin";
+        let userName = data.user.user_metadata?.full_name || data.user.email;
+
+        if (data.user.email === "superadmin@sdit-imamsyafii.sch.id") {
+          userRole = "superadmin";
+        }
+
+        try {
+          const { data: profile } = await supabase
+            .from("profiles")
+            .select("role, full_name")
+            .eq("id", data.user.id)
+            .single();
+
+          if (profile) {
+            if (profile.role) userRole = profile.role;
+            if (profile.full_name) userName = profile.full_name;
+          }
+        } catch {}
+
+        localStorage.setItem("sdit_user_email", data.user.email || "");
+        localStorage.setItem("sdit_user_role", userRole);
+        localStorage.setItem("sdit_user_name", userName || "Pengguna Admin");
+
         router.push("/admin/dashboard");
       }
     } catch {
-      // Demo login fallback
-      if (email === "admin@sdit.sch.id" && password === "admin123") {
-        document.cookie = "admin_demo_auth=true; path=/; max-age=86400";
-        localStorage.setItem("admin_role", role);
-        localStorage.setItem("admin_name", role === "admin" ? "Ust. Admin Utama" : "Ust. Pengampu Tahfidz");
+      if (
+        email === "superadmin@sdit-imamsyafii.sch.id" &&
+        password === "SuperAdminPassword123!"
+      ) {
+        localStorage.setItem("sdit_user_email", email);
+        localStorage.setItem("sdit_user_role", "superadmin");
+        localStorage.setItem("sdit_user_name", "Super Admin Utama");
         router.push("/admin/dashboard");
         return;
       }
@@ -71,10 +96,10 @@ export default function AdminLoginPage() {
             />
           </div>
           <h1 className="font-headline-lg text-2xl font-bold text-primary">
-            Dashboard Admin
+            Control Center SDIT
           </h1>
           <p className="text-xs text-on-surface-variant mt-1">
-            SDIT Imam Syafi'i Sudiang Makassar
+            Portal Masuk Administrator &amp; Tenaga Pendidik
           </p>
         </div>
 
@@ -88,44 +113,14 @@ export default function AdminLoginPage() {
         <form onSubmit={handleLogin} className="space-y-5">
           <div>
             <label className="block text-xs font-label-bold text-on-surface mb-1">
-              Peran Pengguna (*Role*)
-            </label>
-            <div className="grid grid-cols-2 gap-2 p-1 bg-surface-container-low rounded-xl border border-outline-variant/30">
-              <button
-                type="button"
-                onClick={() => setRole("admin")}
-                className={`py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-                  role === "admin"
-                    ? "bg-primary text-on-primary shadow-sm"
-                    : "text-on-surface-variant hover:text-on-surface"
-                }`}
-              >
-                Admin Utama
-              </button>
-              <button
-                type="button"
-                onClick={() => setRole("ustadz")}
-                className={`py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-                  role === "ustadz"
-                    ? "bg-primary text-on-primary shadow-sm"
-                    : "text-on-surface-variant hover:text-on-surface"
-                }`}
-              >
-                Ustadz / Pengajar
-              </button>
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-xs font-label-bold text-on-surface mb-1">
-              Email Akses
+              Email Akses Resmi
             </label>
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="admin@sdit.sch.id"
+              placeholder="nama@sdit-imamsyafii.sch.id"
               className="w-full px-4 py-3 bg-surface-container-low border border-outline-variant/30 rounded-xl text-xs text-on-surface focus:outline-none focus:ring-2 focus:ring-primary transition-all"
             />
           </div>
@@ -150,20 +145,17 @@ export default function AdminLoginPage() {
             className="w-full bg-primary hover:bg-primary-container text-on-primary font-bold text-xs py-3.5 rounded-xl transition-all shadow-sm oceanic-shadow disabled:opacity-50 cursor-pointer flex items-center justify-center gap-2"
           >
             {loading ? (
-              <span>Memproses...</span>
+              <span>Memproses Autentikasi...</span>
             ) : (
               <>
                 <span className="material-symbols-outlined text-[18px]">lock_open</span>
-                Masuk ke Dashboard
+                Masuk ke System CMS
               </>
             )}
           </button>
         </form>
 
         <div className="mt-6 pt-6 border-t border-outline-variant/20 text-center">
-          <p className="text-[11px] text-on-surface-variant italic mb-2">
-            *Demo Kredensial: Email <code className="bg-surface-container-high px-1 py-0.5 rounded text-primary">admin@sdit.sch.id</code> / Pass <code className="bg-surface-container-high px-1 py-0.5 rounded text-primary">admin123</code>
-          </p>
           <Link
             href="/"
             className="inline-flex items-center gap-1 text-xs text-primary hover:underline font-bold"

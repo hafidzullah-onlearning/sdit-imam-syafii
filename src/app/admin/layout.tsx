@@ -13,20 +13,21 @@ export default function AdminLayout({
   const pathname = usePathname();
   const router = useRouter();
   const [role, setRole] = useState<string>("admin");
-  const [name, setName] = useState<string>("Admin SDIT");
+  const [name, setName] = useState<string>("Pengguna Admin");
   const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   useEffect(() => {
-    const savedRole = localStorage.getItem("admin_role") || "admin";
-    const savedName = localStorage.getItem("admin_name") || "Ust. Admin Utama";
+    const savedRole = localStorage.getItem("sdit_user_role") || "admin";
+    const savedName = localStorage.getItem("sdit_user_name") || "Pengguna Admin";
     setRole(savedRole);
     setName(savedName);
   }, []);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    localStorage.removeItem("sdit_user_role");
+    localStorage.removeItem("sdit_user_name");
+    localStorage.removeItem("sdit_user_email");
     document.cookie = "admin_demo_auth=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT";
-    localStorage.removeItem("admin_role");
-    localStorage.removeItem("admin_name");
     router.push("/admin/login");
   };
 
@@ -35,31 +36,37 @@ export default function AdminLayout({
       label: "Dashboard",
       href: "/admin/dashboard",
       icon: "dashboard",
-      roles: ["admin", "ustadz"],
+      roles: ["superadmin", "admin", "ustadz"],
+    },
+    {
+      label: "Kelola Pengguna",
+      href: "/admin/users",
+      icon: "manage_accounts",
+      roles: ["superadmin"],
     },
     {
       label: "Status Tahfidz",
       href: "/admin/tahfidz",
       icon: "menu_book",
-      roles: ["admin", "ustadz"],
+      roles: ["superadmin", "admin", "ustadz"],
     },
     {
       label: "CMS Berita",
       href: "/admin/berita",
       icon: "newspaper",
-      roles: ["admin"],
+      roles: ["superadmin", "admin"],
     },
     {
       label: "Gelombang PPDB",
       href: "/admin/ppdb",
       icon: "how_to_reg",
-      roles: ["admin"],
+      roles: ["superadmin", "admin"],
     },
     {
       label: "Struktur Organisasi",
       href: "/admin/struktur",
       icon: "groups",
-      roles: ["admin"],
+      roles: ["superadmin", "admin"],
     },
   ];
 
@@ -113,7 +120,11 @@ export default function AdminLayout({
               <div className="overflow-hidden">
                 <p className="font-bold text-xs text-on-surface truncate">{name}</p>
                 <span className="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-secondary-fixed text-on-secondary-fixed">
-                  {role === "admin" ? "Admin Utama" : "Ustadz / Pengajar"}
+                  {role === "superadmin"
+                    ? "Super Admin Utama"
+                    : role === "admin"
+                    ? "Admin Utama"
+                    : "Ustadz / Pengajar"}
                 </span>
               </div>
             </div>
