@@ -27,6 +27,7 @@ export default function AdminLayout({
     localStorage.removeItem("sdit_user_role");
     localStorage.removeItem("sdit_user_name");
     localStorage.removeItem("sdit_user_email");
+    document.cookie = "sdit_session=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT";
     document.cookie = "admin_demo_auth=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT";
     router.push("/admin/login");
   };

@@ -35,31 +35,36 @@ export async function middleware(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser();
 
+  const sditSession = request.cookies.get("sdit_session")?.value;
   const pathname = request.nextUrl.pathname;
 
   // 1. Protect /admin routes (except /admin/login)
   if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
-    if (!user) {
+    if (!user && !sditSession) {
       const redirectUrl = request.nextUrl.clone();
       redirectUrl.pathname = "/admin/login";
       return NextResponse.redirect(redirectUrl);
     }
 
-    // Special SuperAdmin check for demo credential fallback or DB user profile
-    const isSuperAdminEmail = user.email === "superadmin@sdit-imamsyafii.sch.id";
-
-    // Fetch user profile role from DB if available
-    let role = user.user_metadata?.role || (isSuperAdminEmail ? "superadmin" : "admin");
+    // Determine role
+    let role = "admin";
+    if (user?.email === "superadmin@sdit-imamsyafii.sch.id" || sditSession === "superadmin") {
+      role = "superadmin";
+    } else if (sditSession === "ustadz") {
+      role = "ustadz";
+    }
 
     try {
-      const { data: profile } = await supabase
-        .from("profiles")
-        .select("role")
-        .eq("id", user.id)
-        .single();
+      if (user) {
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("role")
+          .eq("id", user.id)
+          .single();
 
-      if (profile?.role) {
-        role = profile.role;
+        if (profile?.role) {
+          role = profile.role;
+        }
       }
     } catch {}
 
@@ -81,7 +86,7 @@ export async function middleware(request: NextRequest) {
   }
 
   // 2. Redirect away from /admin/login if already authenticated
-  if (pathname === "/admin/login" && user) {
+  if (pathname === "/admin/login" && (user || sditSession)) {
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = "/admin/dashboard";
     return NextResponse.redirect(redirectUrl);

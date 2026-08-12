@@ -31,6 +31,7 @@ export default function AdminLoginPage() {
           email === "superadmin@sdit-imamsyafii.sch.id" &&
           password === "SuperAdminPassword123!"
         ) {
+          document.cookie = "sdit_session=superadmin; path=/; max-age=86400";
           localStorage.setItem("sdit_user_email", email);
           localStorage.setItem("sdit_user_role", "superadmin");
           localStorage.setItem("sdit_user_name", "Super Admin Utama");
@@ -59,6 +60,7 @@ export default function AdminLoginPage() {
           }
         } catch {}
 
+        document.cookie = `sdit_session=${userRole}; path=/; max-age=86400`;
         localStorage.setItem("sdit_user_email", data.user.email || "");
         localStorage.setItem("sdit_user_role", userRole);
         localStorage.setItem("sdit_user_name", userName || "Pengguna Admin");
@@ -70,6 +72,7 @@ export default function AdminLoginPage() {
         email === "superadmin@sdit-imamsyafii.sch.id" &&
         password === "SuperAdminPassword123!"
       ) {
+        document.cookie = "sdit_session=superadmin; path=/; max-age=86400";
         localStorage.setItem("sdit_user_email", email);
         localStorage.setItem("sdit_user_role", "superadmin");
         localStorage.setItem("sdit_user_name", "Super Admin Utama");
