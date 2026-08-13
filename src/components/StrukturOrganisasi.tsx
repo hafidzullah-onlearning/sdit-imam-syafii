@@ -113,9 +113,9 @@ export default function StrukturOrganisasi() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-md">
           {staffMembers.map((staff) => (
             <div key={staff.id} className="text-center group">
-              <div className="relative mb-md overflow-hidden rounded-2xl aspect-[3/4] oceanic-shadow border border-surface-variant/30 bg-surface-container-lowest flex flex-col items-center justify-center p-4">
-                <div className="transform group-hover:scale-105 transition-transform duration-500">
-                  <IslamicAvatar gender={staff.gender} size={140} />
+              <div className="relative mb-md overflow-hidden rounded-2xl aspect-[3/4] oceanic-shadow border border-surface-variant/30 bg-surface-container-lowest flex flex-col items-center justify-center p-3">
+                <div className="transform group-hover:scale-105 transition-transform duration-500 w-full h-full flex items-center justify-center">
+                  <IslamicAvatar gender={staff.gender} size={185} />
                 </div>
               </div>
               <h4 className="font-bold text-lg text-on-surface mb-1">{staff.name}</h4>

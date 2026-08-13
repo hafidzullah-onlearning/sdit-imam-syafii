@@ -165,7 +165,7 @@ export default function AdminStrukturPage() {
 
               {/* Islamic Avatar Icon */}
               <div className="my-2 transition-transform group-hover:scale-105 duration-300">
-                <IslamicAvatar gender={staff.gender} size={110} />
+                <IslamicAvatar gender={staff.gender} size={160} />
               </div>
 
               <h3 className="font-bold text-base text-on-surface mt-2 mb-1">
