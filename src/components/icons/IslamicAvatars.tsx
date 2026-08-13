@@ -6,12 +6,13 @@ interface AvatarProps {
 }
 
 /**
- * Ustadz Avatar Icon - Reproducing reference vector design
+ * Ustadz Avatar Icon - Exact replica of user attached image 1
+ * (Transparent background, grey circle border, grey peci/shirt, light grey face)
  */
 export function UstadzAvatar({ className = "", size = 120 }: AvatarProps) {
   return (
     <div
-      className={`relative inline-flex items-center justify-center rounded-full overflow-hidden shadow-sm ${className}`}
+      className={`relative inline-flex items-center justify-center ${className}`}
       style={{ width: size, height: size }}
     >
       <svg
@@ -20,46 +21,32 @@ export function UstadzAvatar({ className = "", size = 120 }: AvatarProps) {
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
-        {/* Background Circle */}
-        <circle cx="100" cy="100" r="98" fill="#EBEBEB" />
-
-        {/* Outer Circular Border Ring */}
-        <circle cx="100" cy="100" r="91" stroke="#969696" strokeWidth="7" fill="none" />
+        {/* Outer Circle Ring */}
+        <circle cx="100" cy="100" r="89" stroke="#848484" strokeWidth="7" fill="none" />
 
         {/* Peci / Kopiah Cap */}
         <path
-          d="M66 58 C66 38 78 30 100 30 C122 30 134 38 134 58 V66 H66 V58 Z"
-          fill="#707070"
+          d="M71 66 C71 42 79 31 100 31 C121 31 129 42 129 66 V74 H71 V66 Z"
+          fill="#787878"
         />
 
-        {/* Head Contour (Face area) */}
+        {/* Face Contour */}
         <path
-          d="M72 64 C72 50 128 50 128 64 C128 86 118 100 100 100 C82 100 72 86 72 64 Z"
-          fill="#D9D9D9"
+          d="M75 74 C75 56 125 56 125 74 C125 96 116 110 100 110 C84 110 75 96 75 74 Z"
+          fill="#D2D2D2"
         />
 
-        {/* Beard Outline on Jawline */}
+        {/* Neck Area with V-Notch */}
+        <path d="M88 110 H112 V130 H88 Z" fill="#D2D2D2" />
         <path
-          d="M74 76 C78 94 88 104 100 104 C112 104 122 94 126 76 C124 98 114 108 100 108 C86 108 76 98 74 76 Z"
-          fill="#555555"
+          d="M100 114 L94 130 H106 L100 114 Z"
+          fill="#787878"
         />
 
-        {/* Neck Area */}
-        <path d="M86 98 H114 V116 H86 Z" fill="#D9D9D9" />
-
-        {/* Collar V-Notch (Koko Collar) */}
+        {/* Koko Shirt / Shoulders Silhouette */}
         <path
-          d="M93 112 L100 120 L107 112"
-          stroke="#EBEBEB"
-          strokeWidth="3.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-
-        {/* Shoulders & Koko Shirt Silhouette */}
-        <path
-          d="M32 170 C32 134 60 114 100 114 C140 114 168 134 168 170 V195 H32 V170 Z"
-          fill="#707070"
+          d="M36 182 C36 138 64 120 100 120 C136 120 164 138 164 182 V193 H36 V182 Z"
+          fill="#787878"
         />
       </svg>
     </div>
@@ -67,12 +54,13 @@ export function UstadzAvatar({ className = "", size = 120 }: AvatarProps) {
 }
 
 /**
- * Ustadzah Avatar Icon - Reproducing reference vector design
+ * Ustadzah Avatar Icon - Exact replica of user attached image 2
+ * (Transparent background, grey circle border, grey hijab, light grey face)
  */
 export function UstadzahAvatar({ className = "", size = 120 }: AvatarProps) {
   return (
     <div
-      className={`relative inline-flex items-center justify-center rounded-full overflow-hidden shadow-sm ${className}`}
+      className={`relative inline-flex items-center justify-center ${className}`}
       style={{ width: size, height: size }}
     >
       <svg
@@ -81,42 +69,17 @@ export function UstadzahAvatar({ className = "", size = 120 }: AvatarProps) {
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
-        {/* Background Circle */}
-        <circle cx="100" cy="100" r="98" fill="#EBEBEB" />
-
-        {/* Outer Circular Border Ring */}
-        <circle cx="100" cy="100" r="91" stroke="#969696" strokeWidth="7" fill="none" />
+        {/* Outer Circle Ring */}
+        <circle cx="100" cy="100" r="89" stroke="#848484" strokeWidth="7" fill="none" />
 
         {/* Outer Hijab Drape Silhouette */}
         <path
-          d="M52 165 C40 145 42 78 62 48 C76 27 124 27 138 48 C158 78 160 145 148 165 C140 178 120 184 100 184 C80 184 60 178 52 165 Z"
-          fill="#707070"
-        />
-
-        {/* Inner Ciput / Underscarf Layer */}
-        <path
-          d="M72 58 C72 44 82 40 100 40 C118 40 128 44 128 58 V66 H72 V58 Z"
-          fill="#A0A0A0"
+          d="M52 174 C40 152 42 80 64 45 C78 22 122 22 136 45 C158 80 160 152 148 174 C139 188 120 193 100 193 C80 193 61 188 52 174 Z"
+          fill="#787878"
         />
 
         {/* Face Oval Opening */}
-        <ellipse cx="100" cy="80" rx="24" ry="32" fill="#D9D9D9" />
-
-        {/* Hijab Drape Fold Line Details */}
-        <path
-          d="M62 136 C74 150 126 150 138 136"
-          stroke="#555555"
-          strokeWidth="3.5"
-          strokeLinecap="round"
-          fill="none"
-        />
-        <path
-          d="M70 152 C80 162 120 162 130 152"
-          stroke="#555555"
-          strokeWidth="3"
-          strokeLinecap="round"
-          fill="none"
-        />
+        <ellipse cx="100" cy="93" rx="25" ry="35" fill="#D2D2D2" />
       </svg>
     </div>
   );
