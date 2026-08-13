@@ -6,58 +6,60 @@ interface AvatarProps {
 }
 
 /**
- * Ustadz Avatar: Minimalist Syar'i Vector Silhouette with Peci / Kopiah
+ * Ustadz Avatar Icon - Reproducing reference vector design
  */
 export function UstadzAvatar({ className = "", size = 120 }: AvatarProps) {
   return (
     <div
-      className={`relative inline-flex items-center justify-center rounded-2xl bg-gradient-to-b from-primary/10 via-primary/5 to-primary/15 border border-primary/20 p-2 shadow-sm ${className}`}
+      className={`relative inline-flex items-center justify-center rounded-full overflow-hidden shadow-sm ${className}`}
       style={{ width: size, height: size }}
     >
       <svg
-        viewBox="0 0 120 120"
+        viewBox="0 0 200 200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
-        {/* Soft Circular Glow Background */}
-        <circle cx="60" cy="60" r="48" fill="#00658D" fillOpacity="0.08" />
+        {/* Background Circle */}
+        <circle cx="100" cy="100" r="98" fill="#EBEBEB" />
 
-        {/* Peci / Kopiah Silhouette */}
+        {/* Outer Circular Border Ring */}
+        <circle cx="100" cy="100" r="91" stroke="#969696" strokeWidth="7" fill="none" />
+
+        {/* Peci / Kopiah Cap */}
         <path
-          d="M39 41C39 30.5 48 27 60 27C72 27 81 30.5 81 41V46H39V41Z"
-          fill="#004D6B"
+          d="M66 58 C66 38 78 30 100 30 C122 30 134 38 134 58 V66 H66 V58 Z"
+          fill="#707070"
         />
-        <rect x="38" y="44" width="44" height="3" rx="1.5" fill="#00ADEF" />
 
-        {/* Head / Neck Contour Silhouette */}
-        <circle cx="60" cy="52" r="16" fill="#00658D" />
-
-        {/* Collar Accent */}
+        {/* Head Contour (Face area) */}
         <path
-          d="M52 64L60 72L68 64"
-          stroke="#00ADEF"
-          strokeWidth="2.5"
+          d="M72 64 C72 50 128 50 128 64 C128 86 118 100 100 100 C82 100 72 86 72 64 Z"
+          fill="#D9D9D9"
+        />
+
+        {/* Beard Outline on Jawline */}
+        <path
+          d="M74 76 C78 94 88 104 100 104 C112 104 122 94 126 76 C124 98 114 108 100 108 C86 108 76 98 74 76 Z"
+          fill="#555555"
+        />
+
+        {/* Neck Area */}
+        <path d="M86 98 H114 V116 H86 Z" fill="#D9D9D9" />
+
+        {/* Collar V-Notch (Koko Collar) */}
+        <path
+          d="M93 112 L100 120 L107 112"
+          stroke="#EBEBEB"
+          strokeWidth="3.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
 
-        {/* Smooth Shoulders & Bust Silhouette */}
+        {/* Shoulders & Koko Shirt Silhouette */}
         <path
-          d="M26 102C26 82 40 70 60 70C80 70 94 82 94 102V106H26V102Z"
-          fill="#00658D"
-        />
-
-        {/* Shirt Placket Accent Line */}
-        <line
-          x1="60"
-          y1="72"
-          x2="60"
-          y2="98"
-          stroke="#FFFFFF"
-          strokeOpacity="0.6"
-          strokeWidth="2"
-          strokeDasharray="3 3"
+          d="M32 170 C32 134 60 114 100 114 C140 114 168 134 168 170 V195 H32 V170 Z"
+          fill="#707070"
         />
       </svg>
     </div>
@@ -65,47 +67,56 @@ export function UstadzAvatar({ className = "", size = 120 }: AvatarProps) {
 }
 
 /**
- * Ustadzah Avatar: Minimalist Syar'i Vector Silhouette with Graceful Hijab
+ * Ustadzah Avatar Icon - Reproducing reference vector design
  */
 export function UstadzahAvatar({ className = "", size = 120 }: AvatarProps) {
   return (
     <div
-      className={`relative inline-flex items-center justify-center rounded-2xl bg-gradient-to-b from-tertiary/10 via-tertiary/5 to-tertiary/15 border border-tertiary/30 p-2 shadow-sm ${className}`}
+      className={`relative inline-flex items-center justify-center rounded-full overflow-hidden shadow-sm ${className}`}
       style={{ width: size, height: size }}
     >
       <svg
-        viewBox="0 0 120 120"
+        viewBox="0 0 200 200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         className="w-full h-full"
       >
-        {/* Soft Circular Glow Background */}
-        <circle cx="60" cy="60" r="48" fill="#725B38" fillOpacity="0.08" />
+        {/* Background Circle */}
+        <circle cx="100" cy="100" r="98" fill="#EBEBEB" />
 
-        {/* Outer Graceful Syar'i Hijab Silhouette */}
+        {/* Outer Circular Border Ring */}
+        <circle cx="100" cy="100" r="91" stroke="#969696" strokeWidth="7" fill="none" />
+
+        {/* Outer Hijab Drape Silhouette */}
         <path
-          d="M24 98C24 68 34 26 60 26C86 26 96 68 96 98C96 104 86 107 60 107C34 107 24 104 24 98Z"
-          fill="#725B38"
+          d="M52 165 C40 145 42 78 62 48 C76 27 124 27 138 48 C158 78 160 145 148 165 C140 178 120 184 100 184 C80 184 60 178 52 165 Z"
+          fill="#707070"
         />
 
-        {/* Inner Hijab Layer (Ciput / Layer Accent) */}
+        {/* Inner Ciput / Underscarf Layer */}
         <path
-          d="M39 42C39 31 47 29 60 29C73 29 81 31 81 42V48H39V42Z"
-          fill="#BA9E77"
+          d="M72 58 C72 44 82 40 100 40 C118 40 128 44 128 58 V66 H72 V58 Z"
+          fill="#A0A0A0"
         />
 
-        {/* Face Oval Area (Soft Neutral Silhouette) */}
-        <ellipse cx="60" cy="52" rx="13" ry="15" fill="#493516" />
+        {/* Face Oval Opening */}
+        <ellipse cx="100" cy="80" rx="24" ry="32" fill="#D9D9D9" />
 
-        {/* Drape Folds Silhouette */}
+        {/* Hijab Drape Fold Line Details */}
         <path
-          d="M38 74C46 84 74 84 82 74C76 96 44 96 38 74Z"
-          fill="#BA9E77"
-          fillOpacity="0.85"
+          d="M62 136 C74 150 126 150 138 136"
+          stroke="#555555"
+          strokeWidth="3.5"
+          strokeLinecap="round"
+          fill="none"
         />
-
-        {/* Pin Accent */}
-        <circle cx="70" cy="72" r="3.5" fill="#FEDEB2" />
+        <path
+          d="M70 152 C80 162 120 162 130 152"
+          stroke="#555555"
+          strokeWidth="3"
+          strokeLinecap="round"
+          fill="none"
+        />
       </svg>
     </div>
   );
